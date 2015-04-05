@@ -74,6 +74,7 @@
     <ClCompile Include="BoggleForm.cpp" />
     <ClCompile Include="DiceBag.cpp" />
     <ClCompile Include="Die.cpp" />
+    <ClCompile Include="ValidateWords.cpp" />
     <ClCompile Include="WinCLI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,7 @@
     </ClInclude>
     <ClInclude Include="DiceBag.h" />
     <ClInclude Include="Die.h" />
+    <ClInclude Include="ValidateWords.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
