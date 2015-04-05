@@ -123,86 +123,107 @@ namespace Team11Boggle {
 			// 
 			// richTextBox2
 			// 
+			this->richTextBox2->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox2->Location = System::Drawing::Point(84, 3);
 			this->richTextBox2->Name = L"richTextBox2";
+			this->richTextBox2->ReadOnly = true;
 			this->richTextBox2->Size = System::Drawing::Size(75, 75);
 			this->richTextBox2->TabIndex = 1;
 			this->richTextBox2->Text = L"";
 			// 
 			// richTextBox3
 			// 
+			this->richTextBox3->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox3->Location = System::Drawing::Point(165, 3);
 			this->richTextBox3->Name = L"richTextBox3";
+			this->richTextBox3->ReadOnly = true;
 			this->richTextBox3->Size = System::Drawing::Size(75, 75);
 			this->richTextBox3->TabIndex = 2;
 			this->richTextBox3->Text = L"";
 			// 
 			// richTextBox4
 			// 
+			this->richTextBox4->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox4->Location = System::Drawing::Point(246, 3);
 			this->richTextBox4->Name = L"richTextBox4";
+			this->richTextBox4->ReadOnly = true;
 			this->richTextBox4->Size = System::Drawing::Size(75, 75);
 			this->richTextBox4->TabIndex = 3;
 			this->richTextBox4->Text = L"";
 			// 
 			// richTextBox5
 			// 
+			this->richTextBox5->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox5->Location = System::Drawing::Point(3, 84);
 			this->richTextBox5->Name = L"richTextBox5";
+			this->richTextBox5->ReadOnly = true;
 			this->richTextBox5->Size = System::Drawing::Size(75, 75);
 			this->richTextBox5->TabIndex = 4;
 			this->richTextBox5->Text = L"";
 			// 
 			// richTextBox6
 			// 
+			this->richTextBox6->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox6->Location = System::Drawing::Point(84, 84);
 			this->richTextBox6->Name = L"richTextBox6";
+			this->richTextBox6->ReadOnly = true;
 			this->richTextBox6->Size = System::Drawing::Size(75, 75);
 			this->richTextBox6->TabIndex = 5;
 			this->richTextBox6->Text = L"";
 			// 
 			// richTextBox7
 			// 
+			this->richTextBox7->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox7->Location = System::Drawing::Point(165, 84);
 			this->richTextBox7->Name = L"richTextBox7";
+			this->richTextBox7->ReadOnly = true;
 			this->richTextBox7->Size = System::Drawing::Size(75, 75);
 			this->richTextBox7->TabIndex = 6;
 			this->richTextBox7->Text = L"";
 			// 
 			// richTextBox8
 			// 
+			this->richTextBox8->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox8->Location = System::Drawing::Point(246, 84);
 			this->richTextBox8->Name = L"richTextBox8";
+			this->richTextBox8->ReadOnly = true;
 			this->richTextBox8->Size = System::Drawing::Size(75, 75);
 			this->richTextBox8->TabIndex = 7;
 			this->richTextBox8->Text = L"";
 			// 
 			// richTextBox9
 			// 
+			this->richTextBox9->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox9->Location = System::Drawing::Point(3, 165);
 			this->richTextBox9->Name = L"richTextBox9";
+			this->richTextBox9->ReadOnly = true;
 			this->richTextBox9->Size = System::Drawing::Size(75, 75);
 			this->richTextBox9->TabIndex = 8;
 			this->richTextBox9->Text = L"";
 			// 
 			// richTextBox10
 			// 
+			this->richTextBox10->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox10->Location = System::Drawing::Point(84, 165);
 			this->richTextBox10->Name = L"richTextBox10";
+			this->richTextBox10->ReadOnly = true;
 			this->richTextBox10->Size = System::Drawing::Size(75, 75);
 			this->richTextBox10->TabIndex = 9;
 			this->richTextBox10->Text = L"";
 			// 
 			// richTextBox11
 			// 
+			this->richTextBox11->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox11->Location = System::Drawing::Point(165, 165);
 			this->richTextBox11->Name = L"richTextBox11";
+			this->richTextBox11->ReadOnly = true;
 			this->richTextBox11->Size = System::Drawing::Size(75, 75);
 			this->richTextBox11->TabIndex = 10;
 			this->richTextBox11->Text = L"";
 			// 
 			// richTextBox12
 			// 
+			this->richTextBox12->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox12->Location = System::Drawing::Point(246, 165);
 			this->richTextBox12->Name = L"richTextBox12";
 			this->richTextBox12->Size = System::Drawing::Size(75, 75);
@@ -211,32 +232,40 @@ namespace Team11Boggle {
 			// 
 			// richTextBox13
 			// 
+			this->richTextBox13->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox13->Location = System::Drawing::Point(3, 246);
 			this->richTextBox13->Name = L"richTextBox13";
+			this->richTextBox13->ReadOnly = true;
 			this->richTextBox13->Size = System::Drawing::Size(75, 75);
 			this->richTextBox13->TabIndex = 12;
 			this->richTextBox13->Text = L"";
 			// 
 			// richTextBox14
 			// 
+			this->richTextBox14->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox14->Location = System::Drawing::Point(84, 246);
 			this->richTextBox14->Name = L"richTextBox14";
+			this->richTextBox14->ReadOnly = true;
 			this->richTextBox14->Size = System::Drawing::Size(75, 75);
 			this->richTextBox14->TabIndex = 13;
 			this->richTextBox14->Text = L"";
 			// 
 			// richTextBox15
 			// 
+			this->richTextBox15->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox15->Location = System::Drawing::Point(165, 246);
 			this->richTextBox15->Name = L"richTextBox15";
+			this->richTextBox15->ReadOnly = true;
 			this->richTextBox15->Size = System::Drawing::Size(75, 75);
 			this->richTextBox15->TabIndex = 14;
 			this->richTextBox15->Text = L"";
 			// 
 			// richTextBox16
 			// 
+			this->richTextBox16->BackColor = System::Drawing::SystemColors::Control;
 			this->richTextBox16->Location = System::Drawing::Point(246, 246);
 			this->richTextBox16->Name = L"richTextBox16";
+			this->richTextBox16->ReadOnly = true;
 			this->richTextBox16->Size = System::Drawing::Size(75, 75);
 			this->richTextBox16->TabIndex = 15;
 			this->richTextBox16->Text = L"";
