@@ -71,6 +71,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DiceBag.cpp" />
+    <ClCompile Include="Die.cpp" />
     <ClCompile Include="Form.cpp" />
     <ClCompile Include="WinCLI.cpp" />
   </ItemGroup>
@@ -82,9 +84,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DiceBag.h" />
+    <ClInclude Include="Die.h" />
     <ClInclude Include="Form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form.resx">
+      <DependentUpon>Form.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
