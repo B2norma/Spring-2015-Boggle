@@ -13,6 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="Source Files\controller">
       <UniqueIdentifier>{d3ead3ec-783a-4d9e-ba14-f304a19d308e}</UniqueIdentifier>
     </Filter>
@@ -21,12 +22,17 @@
     </Filter>
     <Filter Include="Source Files\view">
       <UniqueIdentifier>{4e2769e2-5fd3-41e1-96d0-170004b05efc}</UniqueIdentifier>
+=======
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{e16d70aa-b35d-40cb-b7fe-d730823e7248}</UniqueIdentifier>
+>>>>>>> Team11Boggle/master
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinCLI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="BoggleForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,6 +48,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoggleForm.h">
+=======
+    <ClCompile Include="Form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Die.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="DiceBag.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Form.h">
+>>>>>>> Team11Boggle/master
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Die.h">
@@ -50,8 +70,11 @@
     <ClInclude Include="DiceBag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="ValidateWords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> Team11Boggle/master
   </ItemGroup>
 </Project>

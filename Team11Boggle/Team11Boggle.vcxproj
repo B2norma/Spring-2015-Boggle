@@ -11,7 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+<<<<<<< HEAD
     <ProjectGuid>{DE0760E6-DFC8-4F39-991E-6B39490FEA83}</ProjectGuid>
+=======
+    <ProjectGuid>{DB2DEE09-39D0-493C-B84B-8B83558B3BD4}</ProjectGuid>
+>>>>>>> Team11Boggle/master
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>Team11Boggle</RootNamespace>
@@ -71,10 +75,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="BoggleForm.cpp" />
     <ClCompile Include="DiceBag.cpp" />
     <ClCompile Include="Die.cpp" />
     <ClCompile Include="ValidateWords.cpp" />
+=======
+    <ClCompile Include="DiceBag.cpp" />
+    <ClCompile Include="Die.cpp" />
+    <ClCompile Include="Form.cpp" />
+>>>>>>> Team11Boggle/master
     <ClCompile Include="WinCLI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,12 +95,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="BoggleForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DiceBag.h" />
     <ClInclude Include="Die.h" />
     <ClInclude Include="ValidateWords.h" />
+=======
+    <ClInclude Include="DiceBag.h" />
+    <ClInclude Include="Die.h" />
+    <ClInclude Include="Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form.resx">
+      <DependentUpon>Form.h</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> Team11Boggle/master
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
