@@ -7,6 +7,9 @@ private:
 
 public:
 	Die();
+<<<<<<< HEAD
 	virtual ~Die();
+=======
+>>>>>>> Team11Boggle/master
 };
 
