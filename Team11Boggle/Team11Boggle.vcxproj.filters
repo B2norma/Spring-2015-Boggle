@@ -42,7 +42,7 @@
     <ClCompile Include="DiceBag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ValidateWords.cpp">
+    <ClCompile Include="WordValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,7 +71,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="ValidateWords.h">
+=======
+    <ClInclude Include="WordValidator.h">
+>>>>>>> 5bc7b8af3ac363ef5c6c768fed522a7426406524
       <Filter>Header Files</Filter>
     </ClInclude>
 =======

@@ -4,13 +4,13 @@
 
 using namespace std;
 
-ref class ValidateWords
+ref class WordValidator
 {
 private:
 
 public:
-	ValidateWords();
-	virtual ~ValidateWords();
+	WordValidator();
+	virtual ~WordValidator();
 	bool search(string word);
 };
 
