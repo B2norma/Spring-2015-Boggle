@@ -11,11 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-<<<<<<< HEAD
     <ProjectGuid>{DE0760E6-DFC8-4F39-991E-6B39490FEA83}</ProjectGuid>
-=======
-    <ProjectGuid>{DB2DEE09-39D0-493C-B84B-8B83558B3BD4}</ProjectGuid>
->>>>>>> Team11Boggle/master
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>Team11Boggle</RootNamespace>
@@ -75,10 +71,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="BoggleForm.cpp" />
     <ClCompile Include="DiceBag.cpp" />
     <ClCompile Include="Die.cpp" />
+<<<<<<< HEAD
 <<<<<<< HEAD
     <ClCompile Include="ValidateWords.cpp" />
 =======
@@ -89,6 +85,9 @@
 =======
     <ClCompile Include="WordValidator.cpp" />
 >>>>>>> 5bc7b8af3ac363ef5c6c768fed522a7426406524
+=======
+    <ClCompile Include="WordValidator.cpp" />
+>>>>>>> a252667221c60509b649f77dd6b608ee4452e461
     <ClCompile Include="WinCLI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -99,12 +98,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="BoggleForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DiceBag.h" />
     <ClInclude Include="Die.h" />
+<<<<<<< HEAD
 <<<<<<< HEAD
     <ClInclude Include="ValidateWords.h" />
 =======
@@ -122,6 +121,9 @@
 =======
     <ClInclude Include="WordValidator.h" />
 >>>>>>> 5bc7b8af3ac363ef5c6c768fed522a7426406524
+=======
+    <ClInclude Include="WordValidator.h" />
+>>>>>>> a252667221c60509b649f77dd6b608ee4452e461
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
