@@ -10,13 +10,18 @@ namespace Team11Boggle {
 	using namespace System::Drawing;
 
 	public ref class BoggleForm : public System::Windows::Forms::Form
-	{
+	{		
+
 	private:
-		System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
+	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
+	
 
 	public:
 		BoggleForm(void);
-
+		static int seconds = 60;
+		static int minutes = 2;
+		String^ sec;
+		String^ min;
 
 	protected:
 
@@ -275,11 +280,11 @@ namespace Team11Boggle {
 			this->GameTimer->AutoSize = true;
 			this->GameTimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->GameTimer->Location = System::Drawing::Point(401, 61);
+			this->GameTimer->Location = System::Drawing::Point(390, 15);
 			this->GameTimer->Name = L"GameTimer";
 			this->GameTimer->Size = System::Drawing::Size(71, 33);
 			this->GameTimer->TabIndex = 2;
-			this->GameTimer->Text = L"0:00";
+			this->GameTimer->Text = L"3:00";
 			this->GameTimer->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// BoggleForm
@@ -297,7 +302,7 @@ namespace Team11Boggle {
 
 		}
 #pragma endregion
-
+		
 	};
 }
 

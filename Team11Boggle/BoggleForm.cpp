@@ -1,5 +1,7 @@
 #include "BoggleForm.h"
 
+using namespace std;
+
 using namespace Team11Boggle;
 
 [STAThreadAttribute]
@@ -13,11 +15,9 @@ int main(array<System::String ^> ^args)
 }
 
 	BoggleForm::BoggleForm(void)
-	{
-		InitializeComponent();
-		//
-		//TODO: Add the constructor code here
-		//
+	{			
+		InitializeComponent();	
+
 	}
 
 	
@@ -32,6 +32,21 @@ int main(array<System::String ^> ^args)
 			}
 		}
 
-		System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e) {
-
+		
+		void BoggleForm::Timer_Tick(System::Object^  sender, System::EventArgs^  e) {
+			
+			this->seconds--;
+			this->sec = Convert::ToString(this->seconds);
+			this->min = Convert::ToString(this->minutes);
+			GameTimer->Text = this->min + ":" + this->sec;
+					
+			if (this->minutes == 0 && this->seconds == 0){
+				GameTimer->Text = "0:00";
+				Timer->Stop();
+			}
+			else if (this->seconds == 0)
+			{
+				this->seconds = 59;
+				this->minutes--;
+			}					
 		}
