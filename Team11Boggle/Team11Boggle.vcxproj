@@ -125,6 +125,11 @@
     <ClInclude Include="WordValidator.h" />
 >>>>>>> a252667221c60509b649f77dd6b608ee4452e461
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BoggleForm.resx">
+      <DependentUpon>BoggleForm.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

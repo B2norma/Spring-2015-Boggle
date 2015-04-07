@@ -9,9 +9,6 @@ private:
 
 public:
 	DiceBag();
-<<<<<<< HEAD
 	virtual ~DiceBag();
-=======
->>>>>>> Team11Boggle/master
 };
 
