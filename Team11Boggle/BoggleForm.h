@@ -19,8 +19,7 @@ namespace Team11Boggle {
 	String^ min;
 
 	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	}	
+	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
         
 	public:
 		BoggleForm(void);

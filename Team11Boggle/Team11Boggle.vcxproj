@@ -72,22 +72,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoggleForm.cpp" />
+    <!--    <ClCompile Include="DiceBag.cpp" />-->
+    <!--    <ClCompile Include="Die.cpp" />-->
     <ClCompile Include="DiceBag.cpp" />
     <ClCompile Include="Die.cpp" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ClCompile Include="ValidateWords.cpp" />
-=======
-    <ClCompile Include="DiceBag.cpp" />
-    <ClCompile Include="Die.cpp" />
-    <ClCompile Include="Form.cpp" />
->>>>>>> Team11Boggle/master
-=======
+    <!--    <ClCompile Include="WordValidator.cpp" />-->
     <ClCompile Include="WordValidator.cpp" />
->>>>>>> 5bc7b8af3ac363ef5c6c768fed522a7426406524
-=======
-    <ClCompile Include="WordValidator.cpp" />
->>>>>>> a252667221c60509b649f77dd6b608ee4452e461
     <ClCompile Include="WinCLI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,27 +93,12 @@
     </ClInclude>
     <ClInclude Include="DiceBag.h" />
     <ClInclude Include="Die.h" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ClInclude Include="ValidateWords.h" />
-=======
-    <ClInclude Include="DiceBag.h" />
-    <ClInclude Include="Die.h" />
-    <ClInclude Include="Form.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
+    <!--    <ClInclude Include="DiceBag.h" />-->
+    <!--    <ClInclude Include="Die.h" />-->
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form.resx">
-      <DependentUpon>Form.h</DependentUpon>
-    </EmbeddedResource>
->>>>>>> Team11Boggle/master
-=======
+    <!--    <ClInclude Include="WordValidator.h" />-->
     <ClInclude Include="WordValidator.h" />
->>>>>>> 5bc7b8af3ac363ef5c6c768fed522a7426406524
-=======
-    <ClInclude Include="WordValidator.h" />
->>>>>>> a252667221c60509b649f77dd6b608ee4452e461
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BoggleForm.resx">

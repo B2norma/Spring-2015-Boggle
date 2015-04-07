@@ -1,66 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\controller">
-      <UniqueIdentifier>{d3ead3ec-783a-4d9e-ba14-f304a19d308e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\model">
-      <UniqueIdentifier>{1be19daa-c60d-474c-baa0-165185c4f46f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\view">
-      <UniqueIdentifier>{4e2769e2-5fd3-41e1-96d0-170004b05efc}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="WinCLI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BoggleForm.cpp">
+    <ClCompile Include="DiceBag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Die.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DiceBag.cpp">
+    <ClCompile Include="WinCLI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WordValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BoggleForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BoggleForm.h">
+    <ClInclude Include="BoggleForm.h" />
+    <ClInclude Include="DiceBag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WordValidator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Die.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DiceBag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <ClInclude Include="ValidateWords.h">
-=======
-    <ClInclude Include="WordValidator.h">
->>>>>>> 5bc7b8af3ac363ef5c6c768fed522a7426406524
-=======
-    <ClInclude Include="WordValidator.h">
->>>>>>> a252667221c60509b649f77dd6b608ee4452e461
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form.resx" />
+    <EmbeddedResource Include="BoggleForm.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{928765f1-4982-4ab7-be82-01b517c7d957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c5e06dd9-851d-4160-8fce-9d9eb3b7c090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{976e30f6-49f6-4ebb-823f-f0fb3d5dae80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
