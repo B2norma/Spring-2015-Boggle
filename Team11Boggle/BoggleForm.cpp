@@ -50,3 +50,6 @@ int main(array<System::String ^> ^args)
 				this->minutes--;
 			}					
 		}
+
+		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+		}

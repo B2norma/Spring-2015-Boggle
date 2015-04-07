@@ -13,22 +13,24 @@ namespace Team11Boggle {
 	{		
 
 	private:
-	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
-	
+	static int seconds = 60;
+	static int minutes = 2;
+	String^ sec;
+	String^ min;
 
+	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
+	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	}	
+        
 	public:
 		BoggleForm(void);
-		static int seconds = 60;
-		static int minutes = 2;
-		String^ sec;
-		String^ min;
+		
 
 	protected:
-
 		~BoggleForm();
 
-	private: System::Windows::Forms::RichTextBox^  richTextBox1;
-	protected:
+	private: System::Windows::Forms::Button^  startButton;
+	private: System::Windows::Forms::RichTextBox^  richTextBox1;	
 	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
 	private: System::Windows::Forms::RichTextBox^  richTextBox2;
 	private: System::Windows::Forms::RichTextBox^  richTextBox3;
@@ -85,6 +87,7 @@ namespace Team11Boggle {
 			this->richTextBox16 = (gcnew System::Windows::Forms::RichTextBox());
 			this->Timer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->GameTimer = (gcnew System::Windows::Forms::Label());
+			this->startButton = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -287,11 +290,23 @@ namespace Team11Boggle {
 			this->GameTimer->Text = L"3:00";
 			this->GameTimer->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
+			// startButton
+			// 
+			this->startButton->Location = System::Drawing::Point(125, 355);
+			this->startButton->Name = L"startButton";
+			this->startButton->Size = System::Drawing::Size(114, 39);
+			this->startButton->TabIndex = 3;
+			this->startButton->Text = L"Start";
+			this->startButton->UseVisualStyleBackColor = true;
+			this->startButton->Click += gcnew System::EventHandler(this, &BoggleForm::Timer_Tick);
+			this->startButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onStartClick);
+			// 
 			// BoggleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(539, 417);
+			this->Controls->Add(this->startButton);
 			this->Controls->Add(this->GameTimer);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"BoggleForm";
@@ -301,8 +316,8 @@ namespace Team11Boggle {
 			this->PerformLayout();
 
 		}
-#pragma endregion
-		
-	};
+#pragma endregion		
+	
+};
 }
 
