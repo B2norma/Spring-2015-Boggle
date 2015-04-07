@@ -92,6 +92,11 @@
     <ClInclude Include="Die.h" />
     <ClInclude Include="WordValidator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BoggleForm.resx">
+      <DependentUpon>BoggleForm.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

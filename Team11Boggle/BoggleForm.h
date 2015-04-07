@@ -9,31 +9,19 @@ namespace Team11Boggle {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for BoggleForm
-	/// </summary>
 	public ref class BoggleForm : public System::Windows::Forms::Form
 	{
+	private:
+		System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
+
 	public:
-		BoggleForm(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		BoggleForm(void);
+
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~BoggleForm()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+
+		~BoggleForm();
+
 	private: System::Windows::Forms::RichTextBox^  richTextBox1;
 	protected:
 	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
@@ -52,6 +40,9 @@ namespace Team11Boggle {
 	private: System::Windows::Forms::RichTextBox^  richTextBox14;
 	private: System::Windows::Forms::RichTextBox^  richTextBox15;
 	private: System::Windows::Forms::RichTextBox^  richTextBox16;
+	private: System::Windows::Forms::Timer^  Timer;
+	private: System::Windows::Forms::Label^  GameTimer;
+	private: System::ComponentModel::IContainer^  components;
 
 
 	protected:
@@ -60,7 +51,7 @@ namespace Team11Boggle {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -69,6 +60,7 @@ namespace Team11Boggle {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
@@ -86,6 +78,8 @@ namespace Team11Boggle {
 			this->richTextBox14 = (gcnew System::Windows::Forms::RichTextBox());
 			this->richTextBox15 = (gcnew System::Windows::Forms::RichTextBox());
 			this->richTextBox16 = (gcnew System::Windows::Forms::RichTextBox());
+			this->Timer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->GameTimer = (gcnew System::Windows::Forms::Label());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -270,19 +264,40 @@ namespace Team11Boggle {
 			this->richTextBox16->TabIndex = 15;
 			this->richTextBox16->Text = L"";
 			// 
+			// Timer
+			// 
+			this->Timer->Enabled = true;
+			this->Timer->Interval = 1000;
+			this->Timer->Tick += gcnew System::EventHandler(this, &BoggleForm::Timer_Tick);
+			// 
+			// GameTimer
+			// 
+			this->GameTimer->AutoSize = true;
+			this->GameTimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->GameTimer->Location = System::Drawing::Point(401, 61);
+			this->GameTimer->Name = L"GameTimer";
+			this->GameTimer->Size = System::Drawing::Size(71, 33);
+			this->GameTimer->TabIndex = 2;
+			this->GameTimer->Text = L"0:00";
+			this->GameTimer->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			// 
 			// BoggleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(539, 417);
+			this->Controls->Add(this->GameTimer);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"BoggleForm";
 			this->Text = L"BoggleForm";
 			this->flowLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
+
 	};
 }
 

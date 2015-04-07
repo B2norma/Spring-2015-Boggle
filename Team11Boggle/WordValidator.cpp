@@ -1,4 +1,7 @@
 #include "WordValidator.h"
+#include<string>
+
+using namespace std;
 
 /**
 * Initializes default WordValidator object.
@@ -16,3 +19,4 @@ WordValidator::WordValidator()
 WordValidator::~WordValidator()
 {
 }
+
