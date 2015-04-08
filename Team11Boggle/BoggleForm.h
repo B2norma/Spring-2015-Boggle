@@ -16,8 +16,15 @@ namespace Team11Boggle {
 	static int seconds = 60;
 	static int minutes = 2;
 	String^ sec;
-	String^ min;
+	RichTextBox^ btn;
+	RichTextBox^ btn2;
+	
+	private: System::Windows::Forms::Button^  button1;
+			 String^ min;
 
+    System::Void onFirstClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e); 
+	System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);	
+	System::Void onClickLetter(System::Object^  sender, System::EventArgs^  e);	
 	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
 	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
         
@@ -84,6 +91,7 @@ namespace Team11Boggle {
 			this->richTextBox14 = (gcnew System::Windows::Forms::RichTextBox());
 			this->richTextBox15 = (gcnew System::Windows::Forms::RichTextBox());
 			this->richTextBox16 = (gcnew System::Windows::Forms::RichTextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->Timer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->GameTimer = (gcnew System::Windows::Forms::Label());
 			this->startButton = (gcnew System::Windows::Forms::Button());
@@ -97,7 +105,10 @@ namespace Team11Boggle {
 			this->richTextBox1->ReadOnly = true;
 			this->richTextBox1->Size = System::Drawing::Size(75, 75);
 			this->richTextBox1->TabIndex = 0;
+			this->richTextBox1->Tag = L"";
 			this->richTextBox1->Text = L"";
+			this->richTextBox1->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// flowLayoutPanel1
 			// 
@@ -131,6 +142,8 @@ namespace Team11Boggle {
 			this->richTextBox2->Size = System::Drawing::Size(75, 75);
 			this->richTextBox2->TabIndex = 1;
 			this->richTextBox2->Text = L"";
+			this->richTextBox2->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox2->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox3
 			// 
@@ -141,6 +154,8 @@ namespace Team11Boggle {
 			this->richTextBox3->Size = System::Drawing::Size(75, 75);
 			this->richTextBox3->TabIndex = 2;
 			this->richTextBox3->Text = L"";
+			this->richTextBox3->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox3->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox4
 			// 
@@ -151,6 +166,8 @@ namespace Team11Boggle {
 			this->richTextBox4->Size = System::Drawing::Size(75, 75);
 			this->richTextBox4->TabIndex = 3;
 			this->richTextBox4->Text = L"";
+			this->richTextBox4->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox4->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox5
 			// 
@@ -161,6 +178,8 @@ namespace Team11Boggle {
 			this->richTextBox5->Size = System::Drawing::Size(75, 75);
 			this->richTextBox5->TabIndex = 4;
 			this->richTextBox5->Text = L"";
+			this->richTextBox5->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox5->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox6
 			// 
@@ -171,6 +190,8 @@ namespace Team11Boggle {
 			this->richTextBox6->Size = System::Drawing::Size(75, 75);
 			this->richTextBox6->TabIndex = 5;
 			this->richTextBox6->Text = L"";
+			this->richTextBox6->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox6->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox7
 			// 
@@ -181,6 +202,8 @@ namespace Team11Boggle {
 			this->richTextBox7->Size = System::Drawing::Size(75, 75);
 			this->richTextBox7->TabIndex = 6;
 			this->richTextBox7->Text = L"";
+			this->richTextBox7->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox7->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox8
 			// 
@@ -191,6 +214,8 @@ namespace Team11Boggle {
 			this->richTextBox8->Size = System::Drawing::Size(75, 75);
 			this->richTextBox8->TabIndex = 7;
 			this->richTextBox8->Text = L"";
+			this->richTextBox8->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox8->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox9
 			// 
@@ -201,6 +226,8 @@ namespace Team11Boggle {
 			this->richTextBox9->Size = System::Drawing::Size(75, 75);
 			this->richTextBox9->TabIndex = 8;
 			this->richTextBox9->Text = L"";
+			this->richTextBox9->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox9->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox10
 			// 
@@ -211,6 +238,8 @@ namespace Team11Boggle {
 			this->richTextBox10->Size = System::Drawing::Size(75, 75);
 			this->richTextBox10->TabIndex = 9;
 			this->richTextBox10->Text = L"";
+			this->richTextBox10->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox10->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox11
 			// 
@@ -221,6 +250,8 @@ namespace Team11Boggle {
 			this->richTextBox11->Size = System::Drawing::Size(75, 75);
 			this->richTextBox11->TabIndex = 10;
 			this->richTextBox11->Text = L"";
+			this->richTextBox11->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox11->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox12
 			// 
@@ -230,6 +261,8 @@ namespace Team11Boggle {
 			this->richTextBox12->Size = System::Drawing::Size(75, 75);
 			this->richTextBox12->TabIndex = 11;
 			this->richTextBox12->Text = L"";
+			this->richTextBox12->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox12->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox13
 			// 
@@ -240,6 +273,8 @@ namespace Team11Boggle {
 			this->richTextBox13->Size = System::Drawing::Size(75, 75);
 			this->richTextBox13->TabIndex = 12;
 			this->richTextBox13->Text = L"";
+			this->richTextBox13->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox13->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox14
 			// 
@@ -250,6 +285,8 @@ namespace Team11Boggle {
 			this->richTextBox14->Size = System::Drawing::Size(75, 75);
 			this->richTextBox14->TabIndex = 13;
 			this->richTextBox14->Text = L"";
+			this->richTextBox14->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox14->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox15
 			// 
@@ -260,6 +297,8 @@ namespace Team11Boggle {
 			this->richTextBox15->Size = System::Drawing::Size(75, 75);
 			this->richTextBox15->TabIndex = 14;
 			this->richTextBox15->Text = L"";
+			this->richTextBox15->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox15->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
 			// 
 			// richTextBox16
 			// 
@@ -270,10 +309,21 @@ namespace Team11Boggle {
 			this->richTextBox16->Size = System::Drawing::Size(75, 75);
 			this->richTextBox16->TabIndex = 15;
 			this->richTextBox16->Text = L"";
+			this->richTextBox16->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
+			this->richTextBox16->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onFirstClick);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(120, 355);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(110, 39);
+			this->button1->TabIndex = 16;
+			this->button1->Text = L"Add";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &BoggleForm::button1_Click);
 			// 
 			// Timer
 			// 
-			this->Timer->Enabled = true;
 			this->Timer->Interval = 1000;
 			this->Timer->Tick += gcnew System::EventHandler(this, &BoggleForm::Timer_Tick);
 			// 
@@ -282,7 +332,7 @@ namespace Team11Boggle {
 			this->GameTimer->AutoSize = true;
 			this->GameTimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->GameTimer->Location = System::Drawing::Point(390, 15);
+			this->GameTimer->Location = System::Drawing::Point(397, 15);
 			this->GameTimer->Name = L"GameTimer";
 			this->GameTimer->Size = System::Drawing::Size(71, 33);
 			this->GameTimer->TabIndex = 2;
@@ -291,7 +341,7 @@ namespace Team11Boggle {
 			// 
 			// startButton
 			// 
-			this->startButton->Location = System::Drawing::Point(125, 355);
+			this->startButton->Location = System::Drawing::Point(381, 355);
 			this->startButton->Name = L"startButton";
 			this->startButton->Size = System::Drawing::Size(114, 39);
 			this->startButton->TabIndex = 3;
@@ -308,6 +358,7 @@ namespace Team11Boggle {
 			this->Controls->Add(this->startButton);
 			this->Controls->Add(this->GameTimer);
 			this->Controls->Add(this->flowLayoutPanel1);
+			this->Controls->Add(this->button1);
 			this->Name = L"BoggleForm";
 			this->Text = L"BoggleForm";
 			this->flowLayoutPanel1->ResumeLayout(false);
@@ -315,8 +366,8 @@ namespace Team11Boggle {
 			this->PerformLayout();
 
 		}
-#pragma endregion		
-	
+#pragma endregion
+
 };
 }
 

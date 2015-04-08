@@ -1,5 +1,7 @@
 #include "BoggleForm.h"
-
+#include<cmath>
+#include<string>
+#include<iostream>
 using namespace std;
 
 using namespace Team11Boggle;
@@ -15,7 +17,10 @@ int main(array<System::String ^> ^args)
 }
 
 	BoggleForm::BoggleForm(void)
-	{			
+	{
+		this->btn = this->richTextBox1;
+		this->btn2 = this->richTextBox2;
+
 		InitializeComponent();	
 
 	}
@@ -52,4 +57,35 @@ int main(array<System::String ^> ^args)
 		}
 
 		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			Timer->Start();
 		}
+
+		void BoggleForm::onFirstClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			//RichTextBox^ btn = dynamic_cast<RichTextBox^>(sender); // or safe_cast
+			//this->btn2 = btn;
+			//			 btn->BackColor = ForeColor.Blue;	
+						 
+		}
+		
+		void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
+			RichTextBox^ btn = dynamic_cast<RichTextBox^>(sender); // or safe_cast
+			RichTextBox^ btn2 = dynamic_cast<RichTextBox^>(sender);
+			btn2 = btn;
+
+			btn = dynamic_cast<RichTextBox^>(sender);
+
+			if (abs(btn->Location.X - btn2->Location.X == 0) || abs(btn->Location.Y - btn2->Location.Y) == 81){
+				btn->BackColor = ForeColor.Blue;
+
+			}
+		}
+					
+					
+				
+		
+
+		 void BoggleForm::button1_Click(System::Object^  sender, System::EventArgs^  e) {	
+			 
+			 
+		 }			 
+		
