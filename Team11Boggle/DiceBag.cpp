@@ -34,7 +34,7 @@ void DiceBag::fillDiceBag() {
 	Die^ die5 = gcnew Die("L", "U", "P", "E", "T", "S");
 	Die^ die6 = gcnew Die("A", "C", "I", "T", "O", "A");
 	Die^ die7 = gcnew Die("Y", "L", "G", "K", "U", "E");
-	Die^ die8 = gcnew Die(("Q") + (" ") + ("u"), "B", "M", "J", "O", "A");
+	Die^ die8 = gcnew Die("Qu", "B", "M", "J", "O", "A");
 	Die^ die9 = gcnew Die("E", "H", "I", "S", "P", "N");
 	Die^ die10 = gcnew Die("V", "E", "T", "I", "G", "N");
 	Die^ die11 = gcnew Die("B", "A", "L", "I", "Y", "T");
