@@ -405,7 +405,7 @@ namespace Team11Boggle {
 			this->Controls->Add(this->GameTimer);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"BoggleForm";
-			this->Text = L"BoggleForm";
+			this->Text = L"Boggle by Tim Bergquist and Bradley Norman";
 			this->flowLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
