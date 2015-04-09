@@ -30,7 +30,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form.resx" />
     <EmbeddedResource Include="BoggleForm.resx" />
   </ItemGroup>
   <ItemGroup>

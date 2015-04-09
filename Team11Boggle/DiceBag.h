@@ -5,10 +5,15 @@
 ref class DiceBag
 {
 private:
-	array<Die^>^ dice;
+	List<Die^> ^dice;
+
+	void fillDiceBag();
+
 
 public:
 	DiceBag();
 	virtual ~DiceBag();
+
+	 Die^ getRandomDie();
 };
 

@@ -1,8 +1,4 @@
 #include "BoggleForm.h"
-#include<cmath>
-#include<string>
-#include<iostream>
-using namespace std;
 
 using namespace Team11Boggle;
 
@@ -17,12 +13,9 @@ int main(array<System::String ^> ^args)
 }
 
 	BoggleForm::BoggleForm(void)
-	{
-		this->btn = this->richTextBox1;
-		
-
-		InitializeComponent();	
-this->btn2 = this->richTextBox2;
+	{	
+		srand(time(0));
+		InitializeComponent();
 	}
 
 	
@@ -54,55 +47,32 @@ this->btn2 = this->richTextBox2;
 				this->seconds = 59;
 				this->minutes--;
 			}					
+		
 		}
 
 		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-			Timer->Start();
+		    
+			this->populateGameBoard();
 		}
 
-		int BoggleForm::determineLocation(RichTextBox^ btn){
-			int btnLocation = btn->Location.X;
-			return btnLocation;
+		void BoggleForm::populateGameBoard(){
+
+			DiceBag^ diceBag = gcnew DiceBag();
+
+			this->button1->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button2->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button3->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button4->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button5->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button6->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button7->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button8->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button9->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button10->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button11->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button12->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button13->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button14->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button15->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
 		}
-
-		RichTextBox^ BoggleForm::onFirstClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {			
-			returnBox(sender, e);		
-			return this->richTextBox1;
-		}
-
-		void BoggleForm::returnBox(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
-			this->btn2 = dynamic_cast<RichTextBox^>(sender);			
-		}
-
-		void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {			
-			RichTextBox^ btn1x = dynamic_cast<RichTextBox^>(sender);			
-			RichTextBox^ btn = dynamic_cast<RichTextBox^>(sender);
-
-
-
-			if (this->btn2->Location.X <= btn1x->Location.X){ //&& btn2x->Location.X >= btn1x->Location.X && btn1y->Location.Y >= btn2y->Location.Y && btn2y->Location.Y >= btn1y->Location.Y){
-				
-				btn->BackColor = ForeColor.Red;
-			}
-			else {
-				cout << "Test" << endl;
-				btn1x->BackColor = ForeColor.Black;
-			}
-		}
-		
-		void BoggleForm::onDoubleClick(System::Object^  sender, System::EventArgs^  e) {
-			RichTextBox^ firstBtn = dynamic_cast<RichTextBox^>(sender);
-			firstBtn->BackColor = ForeColor.Red;
-			
-		}
-		
-					
-					
-				
-		
-
-		 void BoggleForm::button1_Click(System::Object^  sender, System::EventArgs^  e) {	
-			 
-			 
-		 }			 
-		
