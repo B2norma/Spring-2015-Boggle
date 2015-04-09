@@ -19,7 +19,7 @@
 		BoggleForm::BoggleForm(void)
 		{
 			this->validWord = "";
-			this->word = gcnew List<String^>();
+			this->word = gcnew array<String^>(16);
 			this->btn2 = this->button1;
 			srand(time(0));
 			InitializeComponent();
@@ -91,14 +91,19 @@
 		/// <param name="sender">The sender.</param>
 		/// <param name="e">The e.</param>
 		void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {
-
+			for (int i = 0; i < this->word->Length; i++){
+				this->validWordBox->Text = this->word[i];
+			}
 		}
 
 		void BoggleForm::getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-			Button^ btn = dynamic_cast<Button^>(sender);
-			this->validWord = btn->Text;
-			this->word->Add(validWord);
-			this->validWordBox->Text = this->validWord;
+			
+			for (int i = 0; i < this->word->Length; i++){
+				Button^ btn = dynamic_cast<Button^>(sender);
+				this->validWord = btn->Text;
+				this->word[i] = this->validWord;				
+			}
+			
 		}
 
 		void BoggleForm::buttonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
@@ -124,14 +129,13 @@
 			btn1->BackColor = ForeColor.Blue;
 			}*/
 
-			if (this->btn2->Location.X >= btn1->Location.X &&
-				this->btn2->Location.X >= btn1->Location.X && btn1->Location.Y >= this->btn2->Location.Y &&
-				this->btn2->Location.Y >= btn1->Location.Y){
-				btn1->BackColor = ForeColor.Aqua;
-				this->btn2->Location.X = btn1->Location.X;
+			if (this->btn2->Location.X <= btn1->Location.X &&
+				this->btn2->Location.X >= btn1->Location.Y && btn1->Location.Y >= this->btn2->Location.Y &&
+				this->btn2->Location.Y <= btn1->Location.Y){
+				btn1->BackColor = ForeColor.Aqua;				
 			}
 			else {
-				btn1->BackColor = ForeColor.Black;
+				btn1->BackColor = ForeColor.Red; //red indicates issues with algorithm
 			}
 		}
 

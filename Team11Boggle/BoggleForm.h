@@ -23,7 +23,7 @@ namespace Team11Boggle {
 	static int minutes = 2;
 	String^ sec;
 	String^ min;
-	List<String^> ^word;
+	array<String^> ^word;
 	String^ validWord;
 	private: System::Windows::Forms::TextBox^  validWordBox;
 	private: System::Windows::Forms::Button^  addWordButton;
@@ -385,12 +385,13 @@ namespace Team11Boggle {
 			// 
 			// addWordButton
 			// 
-			this->addWordButton->Location = System::Drawing::Point(136, 355);
+			this->addWordButton->Location = System::Drawing::Point(124, 355);
 			this->addWordButton->Name = L"addWordButton";
 			this->addWordButton->Size = System::Drawing::Size(116, 39);
 			this->addWordButton->TabIndex = 6;
 			this->addWordButton->Text = L"Add";
 			this->addWordButton->UseVisualStyleBackColor = true;
+			this->addWordButton->Click += gcnew System::EventHandler(this, &BoggleForm::addWord);
 			this->addWordButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			this->addWordButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
