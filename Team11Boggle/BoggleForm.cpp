@@ -1,4 +1,9 @@
 #include "BoggleForm.h"
+#include<cmath>
+#include<iostream>
+#include<string>
+
+using namespace std;
 
 using namespace Team11Boggle;
 
@@ -13,7 +18,8 @@ int main(array<System::String ^> ^args)
 }
 
 	BoggleForm::BoggleForm(void)
-	{	
+	{
+		this->btn2 = this->button1;
 		srand(time(0));
 		InitializeComponent();
 	}
@@ -49,9 +55,10 @@ int main(array<System::String ^> ^args)
 			}					
 		
 		}
+		
 
 		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		    
+		    Timer->Start();
 			this->populateGameBoard();
 		}
 
@@ -75,4 +82,26 @@ int main(array<System::String ^> ^args)
 			this->button14->Text = diceBag->getRandomDie()->getRandomLetter();
 			this->button15->Text = diceBag->getRandomDie()->getRandomLetter();
 			this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
+		}
+
+		void BoggleForm::returnButtonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
+			this->btn2 = dynamic_cast<Button^>(sender); 
+		}
+
+		void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
+			
+			Button^ btn1 = dynamic_cast<Button^>(sender);
+			
+			if (this->btn2->Location.X <= btn1->Location.X){ //&& btn2x->Location.X >= btn1x->Location.X && btn1y->Location.Y >= btn2y->Location.Y && btn2y->Location.Y >= btn1y->Location.Y){
+				btn1->BackColor = ForeColor.Blue;				
+			}
+			else {				
+				btn1->BackColor = ForeColor.Black;
+			}
+		}
+
+		void BoggleForm::onDoubleClick(System::Object^  sender, System::EventArgs^  e) {
+			Button^ firstBtn = dynamic_cast<Button^>(sender);
+			firstBtn->BackColor = ForeColor.Red;
+
 		}
