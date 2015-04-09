@@ -1,5 +1,10 @@
 #pragma once
 
+#include "DiceBag.h"
+
+#include <cstdlib>
+#include <ctime>
+
 namespace Team11Boggle {
 
 	using namespace System;
@@ -16,10 +21,43 @@ namespace Team11Boggle {
 	static int seconds = 60;
 	static int minutes = 2;
 	String^ sec;
-	String^ min;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Button^  button5;
+	private: System::Windows::Forms::Button^  button6;
+	private: System::Windows::Forms::Button^  button7;
+	private: System::Windows::Forms::Button^  button8;
+	private: System::Windows::Forms::Button^  button9;
+	private: System::Windows::Forms::Button^  button10;
+	private: System::Windows::Forms::Button^  button11;
+	private: System::Windows::Forms::Button^  button12;
+	private: System::Windows::Forms::Button^  button13;
+	private: System::Windows::Forms::Button^  button14;
+	private: System::Windows::Forms::Button^  button15;
+	private: System::Windows::Forms::Button^  button16;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			 String^ min;
 
 	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
 	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+	System::Void populateGameBoard();
         
 	public:
 		BoggleForm(void);
@@ -29,23 +67,23 @@ namespace Team11Boggle {
 		~BoggleForm();
 
 	private: System::Windows::Forms::Button^  startButton;
-	private: System::Windows::Forms::RichTextBox^  richTextBox1;	
+
 	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
-	private: System::Windows::Forms::RichTextBox^  richTextBox2;
-	private: System::Windows::Forms::RichTextBox^  richTextBox3;
-	private: System::Windows::Forms::RichTextBox^  richTextBox4;
-	private: System::Windows::Forms::RichTextBox^  richTextBox5;
-	private: System::Windows::Forms::RichTextBox^  richTextBox6;
-	private: System::Windows::Forms::RichTextBox^  richTextBox7;
-	private: System::Windows::Forms::RichTextBox^  richTextBox8;
-	private: System::Windows::Forms::RichTextBox^  richTextBox9;
-	private: System::Windows::Forms::RichTextBox^  richTextBox10;
-	private: System::Windows::Forms::RichTextBox^  richTextBox11;
-	private: System::Windows::Forms::RichTextBox^  richTextBox12;
-	private: System::Windows::Forms::RichTextBox^  richTextBox13;
-	private: System::Windows::Forms::RichTextBox^  richTextBox14;
-	private: System::Windows::Forms::RichTextBox^  richTextBox15;
-	private: System::Windows::Forms::RichTextBox^  richTextBox16;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Timer^  Timer;
 	private: System::Windows::Forms::Label^  GameTimer;
 	private: System::ComponentModel::IContainer^  components;
@@ -67,209 +105,51 @@ namespace Team11Boggle {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			this->richTextBox2 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox3 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox4 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox5 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox6 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox7 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox8 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox9 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox10 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox11 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox12 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox13 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox14 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox15 = (gcnew System::Windows::Forms::RichTextBox());
-			this->richTextBox16 = (gcnew System::Windows::Forms::RichTextBox());
 			this->Timer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->GameTimer = (gcnew System::Windows::Forms::Label());
 			this->startButton = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->button8 = (gcnew System::Windows::Forms::Button());
+			this->button9 = (gcnew System::Windows::Forms::Button());
+			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->button11 = (gcnew System::Windows::Forms::Button());
+			this->button12 = (gcnew System::Windows::Forms::Button());
+			this->button13 = (gcnew System::Windows::Forms::Button());
+			this->button14 = (gcnew System::Windows::Forms::Button());
+			this->button15 = (gcnew System::Windows::Forms::Button());
+			this->button16 = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// richTextBox1
-			// 
-			this->richTextBox1->Location = System::Drawing::Point(3, 3);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->ReadOnly = true;
-			this->richTextBox1->Size = System::Drawing::Size(75, 75);
-			this->richTextBox1->TabIndex = 0;
-			this->richTextBox1->Text = L"";
-			// 
 			// flowLayoutPanel1
 			// 
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox1);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox2);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox3);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox4);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox5);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox6);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox7);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox8);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox9);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox10);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox11);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox12);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox13);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox14);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox15);
-			this->flowLayoutPanel1->Controls->Add(this->richTextBox16);
+			this->flowLayoutPanel1->Controls->Add(this->button1);
+			this->flowLayoutPanel1->Controls->Add(this->button2);
+			this->flowLayoutPanel1->Controls->Add(this->button3);
+			this->flowLayoutPanel1->Controls->Add(this->button4);
+			this->flowLayoutPanel1->Controls->Add(this->button5);
+			this->flowLayoutPanel1->Controls->Add(this->button6);
+			this->flowLayoutPanel1->Controls->Add(this->button7);
+			this->flowLayoutPanel1->Controls->Add(this->button8);
+			this->flowLayoutPanel1->Controls->Add(this->button9);
+			this->flowLayoutPanel1->Controls->Add(this->button10);
+			this->flowLayoutPanel1->Controls->Add(this->button11);
+			this->flowLayoutPanel1->Controls->Add(this->button12);
+			this->flowLayoutPanel1->Controls->Add(this->button13);
+			this->flowLayoutPanel1->Controls->Add(this->button14);
+			this->flowLayoutPanel1->Controls->Add(this->button15);
+			this->flowLayoutPanel1->Controls->Add(this->button16);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(12, 12);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
 			this->flowLayoutPanel1->Size = System::Drawing::Size(324, 324);
 			this->flowLayoutPanel1->TabIndex = 1;
-			// 
-			// richTextBox2
-			// 
-			this->richTextBox2->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox2->Location = System::Drawing::Point(84, 3);
-			this->richTextBox2->Name = L"richTextBox2";
-			this->richTextBox2->ReadOnly = true;
-			this->richTextBox2->Size = System::Drawing::Size(75, 75);
-			this->richTextBox2->TabIndex = 1;
-			this->richTextBox2->Text = L"";
-			// 
-			// richTextBox3
-			// 
-			this->richTextBox3->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox3->Location = System::Drawing::Point(165, 3);
-			this->richTextBox3->Name = L"richTextBox3";
-			this->richTextBox3->ReadOnly = true;
-			this->richTextBox3->Size = System::Drawing::Size(75, 75);
-			this->richTextBox3->TabIndex = 2;
-			this->richTextBox3->Text = L"";
-			// 
-			// richTextBox4
-			// 
-			this->richTextBox4->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox4->Location = System::Drawing::Point(246, 3);
-			this->richTextBox4->Name = L"richTextBox4";
-			this->richTextBox4->ReadOnly = true;
-			this->richTextBox4->Size = System::Drawing::Size(75, 75);
-			this->richTextBox4->TabIndex = 3;
-			this->richTextBox4->Text = L"";
-			// 
-			// richTextBox5
-			// 
-			this->richTextBox5->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox5->Location = System::Drawing::Point(3, 84);
-			this->richTextBox5->Name = L"richTextBox5";
-			this->richTextBox5->ReadOnly = true;
-			this->richTextBox5->Size = System::Drawing::Size(75, 75);
-			this->richTextBox5->TabIndex = 4;
-			this->richTextBox5->Text = L"";
-			// 
-			// richTextBox6
-			// 
-			this->richTextBox6->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox6->Location = System::Drawing::Point(84, 84);
-			this->richTextBox6->Name = L"richTextBox6";
-			this->richTextBox6->ReadOnly = true;
-			this->richTextBox6->Size = System::Drawing::Size(75, 75);
-			this->richTextBox6->TabIndex = 5;
-			this->richTextBox6->Text = L"";
-			// 
-			// richTextBox7
-			// 
-			this->richTextBox7->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox7->Location = System::Drawing::Point(165, 84);
-			this->richTextBox7->Name = L"richTextBox7";
-			this->richTextBox7->ReadOnly = true;
-			this->richTextBox7->Size = System::Drawing::Size(75, 75);
-			this->richTextBox7->TabIndex = 6;
-			this->richTextBox7->Text = L"";
-			// 
-			// richTextBox8
-			// 
-			this->richTextBox8->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox8->Location = System::Drawing::Point(246, 84);
-			this->richTextBox8->Name = L"richTextBox8";
-			this->richTextBox8->ReadOnly = true;
-			this->richTextBox8->Size = System::Drawing::Size(75, 75);
-			this->richTextBox8->TabIndex = 7;
-			this->richTextBox8->Text = L"";
-			// 
-			// richTextBox9
-			// 
-			this->richTextBox9->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox9->Location = System::Drawing::Point(3, 165);
-			this->richTextBox9->Name = L"richTextBox9";
-			this->richTextBox9->ReadOnly = true;
-			this->richTextBox9->Size = System::Drawing::Size(75, 75);
-			this->richTextBox9->TabIndex = 8;
-			this->richTextBox9->Text = L"";
-			// 
-			// richTextBox10
-			// 
-			this->richTextBox10->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox10->Location = System::Drawing::Point(84, 165);
-			this->richTextBox10->Name = L"richTextBox10";
-			this->richTextBox10->ReadOnly = true;
-			this->richTextBox10->Size = System::Drawing::Size(75, 75);
-			this->richTextBox10->TabIndex = 9;
-			this->richTextBox10->Text = L"";
-			// 
-			// richTextBox11
-			// 
-			this->richTextBox11->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox11->Location = System::Drawing::Point(165, 165);
-			this->richTextBox11->Name = L"richTextBox11";
-			this->richTextBox11->ReadOnly = true;
-			this->richTextBox11->Size = System::Drawing::Size(75, 75);
-			this->richTextBox11->TabIndex = 10;
-			this->richTextBox11->Text = L"";
-			// 
-			// richTextBox12
-			// 
-			this->richTextBox12->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox12->Location = System::Drawing::Point(246, 165);
-			this->richTextBox12->Name = L"richTextBox12";
-			this->richTextBox12->Size = System::Drawing::Size(75, 75);
-			this->richTextBox12->TabIndex = 11;
-			this->richTextBox12->Text = L"";
-			// 
-			// richTextBox13
-			// 
-			this->richTextBox13->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox13->Location = System::Drawing::Point(3, 246);
-			this->richTextBox13->Name = L"richTextBox13";
-			this->richTextBox13->ReadOnly = true;
-			this->richTextBox13->Size = System::Drawing::Size(75, 75);
-			this->richTextBox13->TabIndex = 12;
-			this->richTextBox13->Text = L"";
-			// 
-			// richTextBox14
-			// 
-			this->richTextBox14->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox14->Location = System::Drawing::Point(84, 246);
-			this->richTextBox14->Name = L"richTextBox14";
-			this->richTextBox14->ReadOnly = true;
-			this->richTextBox14->Size = System::Drawing::Size(75, 75);
-			this->richTextBox14->TabIndex = 13;
-			this->richTextBox14->Text = L"";
-			// 
-			// richTextBox15
-			// 
-			this->richTextBox15->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox15->Location = System::Drawing::Point(165, 246);
-			this->richTextBox15->Name = L"richTextBox15";
-			this->richTextBox15->ReadOnly = true;
-			this->richTextBox15->Size = System::Drawing::Size(75, 75);
-			this->richTextBox15->TabIndex = 14;
-			this->richTextBox15->Text = L"";
-			// 
-			// richTextBox16
-			// 
-			this->richTextBox16->BackColor = System::Drawing::SystemColors::Control;
-			this->richTextBox16->Location = System::Drawing::Point(246, 246);
-			this->richTextBox16->Name = L"richTextBox16";
-			this->richTextBox16->ReadOnly = true;
-			this->richTextBox16->Size = System::Drawing::Size(75, 75);
-			this->richTextBox16->TabIndex = 15;
-			this->richTextBox16->Text = L"";
 			// 
 			// Timer
 			// 
@@ -299,6 +179,166 @@ namespace Team11Boggle {
 			this->startButton->UseVisualStyleBackColor = true;
 			this->startButton->Click += gcnew System::EventHandler(this, &BoggleForm::Timer_Tick);
 			this->startButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::onStartClick);
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(3, 3);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 75);
+			this->button1->TabIndex = 0;
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->Location = System::Drawing::Point(84, 3);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 75);
+			this->button2->TabIndex = 1;
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->Location = System::Drawing::Point(165, 3);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 75);
+			this->button3->TabIndex = 2;
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->Location = System::Drawing::Point(246, 3);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(75, 75);
+			this->button4->TabIndex = 3;
+			this->button4->UseVisualStyleBackColor = true;
+			// 
+			// button5
+			// 
+			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button5->Location = System::Drawing::Point(3, 84);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(75, 75);
+			this->button5->TabIndex = 4;
+			this->button5->UseVisualStyleBackColor = true;
+			// 
+			// button6
+			// 
+			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button6->Location = System::Drawing::Point(84, 84);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(75, 75);
+			this->button6->TabIndex = 5;
+			this->button6->UseVisualStyleBackColor = true;
+			// 
+			// button7
+			// 
+			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button7->Location = System::Drawing::Point(165, 84);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(75, 75);
+			this->button7->TabIndex = 6;
+			this->button7->UseVisualStyleBackColor = true;
+			// 
+			// button8
+			// 
+			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button8->Location = System::Drawing::Point(246, 84);
+			this->button8->Name = L"button8";
+			this->button8->Size = System::Drawing::Size(75, 75);
+			this->button8->TabIndex = 7;
+			this->button8->UseVisualStyleBackColor = true;
+			// 
+			// button9
+			// 
+			this->button9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button9->Location = System::Drawing::Point(3, 165);
+			this->button9->Name = L"button9";
+			this->button9->Size = System::Drawing::Size(75, 75);
+			this->button9->TabIndex = 8;
+			this->button9->UseVisualStyleBackColor = true;
+			// 
+			// button10
+			// 
+			this->button10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button10->Location = System::Drawing::Point(84, 165);
+			this->button10->Name = L"button10";
+			this->button10->Size = System::Drawing::Size(75, 75);
+			this->button10->TabIndex = 9;
+			this->button10->UseVisualStyleBackColor = true;
+			// 
+			// button11
+			// 
+			this->button11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button11->Location = System::Drawing::Point(165, 165);
+			this->button11->Name = L"button11";
+			this->button11->Size = System::Drawing::Size(75, 75);
+			this->button11->TabIndex = 10;
+			this->button11->UseVisualStyleBackColor = true;
+			// 
+			// button12
+			// 
+			this->button12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button12->Location = System::Drawing::Point(246, 165);
+			this->button12->Name = L"button12";
+			this->button12->Size = System::Drawing::Size(75, 75);
+			this->button12->TabIndex = 11;
+			this->button12->UseVisualStyleBackColor = true;
+			// 
+			// button13
+			// 
+			this->button13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button13->Location = System::Drawing::Point(3, 246);
+			this->button13->Name = L"button13";
+			this->button13->Size = System::Drawing::Size(75, 75);
+			this->button13->TabIndex = 12;
+			this->button13->UseVisualStyleBackColor = true;
+			// 
+			// button14
+			// 
+			this->button14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button14->Location = System::Drawing::Point(84, 246);
+			this->button14->Name = L"button14";
+			this->button14->Size = System::Drawing::Size(75, 75);
+			this->button14->TabIndex = 13;
+			this->button14->UseVisualStyleBackColor = true;
+			// 
+			// button15
+			// 
+			this->button15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button15->Location = System::Drawing::Point(165, 246);
+			this->button15->Name = L"button15";
+			this->button15->Size = System::Drawing::Size(75, 75);
+			this->button15->TabIndex = 14;
+			this->button15->UseVisualStyleBackColor = true;
+			// 
+			// button16
+			// 
+			this->button16->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button16->Location = System::Drawing::Point(246, 246);
+			this->button16->Name = L"button16";
+			this->button16->Size = System::Drawing::Size(75, 75);
+			this->button16->TabIndex = 15;
+			this->button16->UseVisualStyleBackColor = true;
 			// 
 			// BoggleForm
 			// 

@@ -1,7 +1,5 @@
 #include "BoggleForm.h"
 
-using namespace std;
-
 using namespace Team11Boggle;
 
 [STAThreadAttribute]
@@ -15,9 +13,9 @@ int main(array<System::String ^> ^args)
 }
 
 	BoggleForm::BoggleForm(void)
-	{			
-		InitializeComponent();	
-
+	{	
+		srand(time(0));
+		InitializeComponent();
 	}
 
 	
@@ -49,7 +47,32 @@ int main(array<System::String ^> ^args)
 				this->seconds = 59;
 				this->minutes--;
 			}					
+		
 		}
 
 		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+		    
+			this->populateGameBoard();
+		}
+
+		void BoggleForm::populateGameBoard(){
+
+			DiceBag^ diceBag = gcnew DiceBag();
+
+			this->button1->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button2->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button3->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button4->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button5->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button6->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button7->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button8->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button9->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button10->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button11->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button12->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button13->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button14->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button15->Text = diceBag->getRandomDie()->getRandomLetter();
+			this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
 		}
