@@ -1,30 +1,31 @@
 #include "BoggleForm.h"
 #include<cmath>
 #include<iostream>
-#include<string>
 
-using namespace std;
+		using namespace std;
 
-using namespace Team11Boggle;
+		using namespace Team11Boggle;
 
-[STAThreadAttribute]
-int main(array<System::String ^> ^args)
-{
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false);
+		[STAThreadAttribute]
+		int main(array<System::String ^> ^args)
+		{
+			Application::EnableVisualStyles();
+			Application::SetCompatibleTextRenderingDefault(false);
 
-	Application::Run(gcnew BoggleForm());
-	return 0;
-}
+			Application::Run(gcnew BoggleForm());
+			return 0;
+		}
 
-	BoggleForm::BoggleForm(void)
-	{
-		this->btn2 = this->button1;
-		srand(time(0));
-		InitializeComponent();
-	}
+		BoggleForm::BoggleForm(void)
+		{
+			this->validWord = "";
+			this->word = gcnew List<String^>();
+			this->btn2 = this->button1;
+			srand(time(0));
+			InitializeComponent();
+		}
 
-	
+
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -36,14 +37,14 @@ int main(array<System::String ^> ^args)
 			}
 		}
 
-		
+
 		void BoggleForm::Timer_Tick(System::Object^  sender, System::EventArgs^  e) {
-			
+
 			this->seconds--;
 			this->sec = Convert::ToString(this->seconds);
 			this->min = Convert::ToString(this->minutes);
 			GameTimer->Text = this->min + ":" + this->sec;
-					
+
 			if (this->minutes == 0 && this->seconds == 0){
 				GameTimer->Text = "0:00";
 				Timer->Stop();
@@ -52,13 +53,12 @@ int main(array<System::String ^> ^args)
 			{
 				this->seconds = 59;
 				this->minutes--;
-			}					
-		
+			}
+
 		}
-		
 
 		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		    Timer->Start();
+			this->Timer->Start();
 			this->populateGameBoard();
 		}
 
@@ -84,22 +84,63 @@ int main(array<System::String ^> ^args)
 			this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
 		}
 
-		void BoggleForm::returnButtonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
-			this->btn2 = dynamic_cast<Button^>(sender); 
+		/// <summary>
+		/// Adds the word to validTextBox after being
+		/// validated in dictionary.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The e.</param>
+		void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {
+
+		}
+
+		void BoggleForm::getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			Button^ btn = dynamic_cast<Button^>(sender);
+			this->validWord = btn->Text;
+			this->word->Add(validWord);
+			this->validWordBox->Text = this->validWord;
+		}
+
+		void BoggleForm::buttonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
+			this->btn2 = dynamic_cast<Button^>(sender);
+			this->btn2->Location.X;
+		}
+
+		void BoggleForm::textClick2(System::Object^  sender, System::EventArgs^  e) {
+			this->btn2 = dynamic_cast<Button^>(sender);
+			Button^ btn = dynamic_cast<Button^>(sender);
+			String^ btnText = btn->Text;
 		}
 
 		void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
-			
+
 			Button^ btn1 = dynamic_cast<Button^>(sender);
-			
-			if (this->btn2->Location.X <= btn1->Location.X){ //&& btn2x->Location.X >= btn1x->Location.X && btn1y->Location.Y >= btn2y->Location.Y && btn2y->Location.Y >= btn1y->Location.Y){
-				btn1->BackColor = ForeColor.Blue;				
+
+			//Test for a possible solution
+			/*if (btn1->Location.X <= this->btn2->Location.X + 75 && btn1->Location.X >= this->btn2->Location.X - 75
+			&& btn1->Location.Y <= this->btn2->Location.Y + 75 && btn1->Location.Y >= this->btn2->Location.Y - 75){
+			this->btn2->Width = btn1->Width;
+			this->btn2->Height = btn1->Height;
+			btn1->BackColor = ForeColor.Blue;
+			}*/
+
+			if (this->btn2->Location.X >= btn1->Location.X &&
+				this->btn2->Location.X >= btn1->Location.X && btn1->Location.Y >= this->btn2->Location.Y &&
+				this->btn2->Location.Y >= btn1->Location.Y){
+				btn1->BackColor = ForeColor.Aqua;
+				this->btn2->Location.X = btn1->Location.X;
 			}
-			else {				
+			else {
 				btn1->BackColor = ForeColor.Black;
 			}
 		}
 
+		/// <summary>
+		/// Test method to begin game with double click 
+		/// of game cube.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The e.</param>
 		void BoggleForm::onDoubleClick(System::Object^  sender, System::EventArgs^  e) {
 			Button^ firstBtn = dynamic_cast<Button^>(sender);
 			firstBtn->BackColor = ForeColor.Red;
