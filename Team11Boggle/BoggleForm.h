@@ -27,6 +27,7 @@ namespace Team11Boggle {
 	String^ validWord;
 	private: System::Windows::Forms::TextBox^  validWordBox;
 	private: System::Windows::Forms::Button^  addWordButton;
+	private: System::Windows::Forms::Button^  spinButton;
 
 
 			 Button^ btn2;
@@ -110,6 +111,7 @@ namespace Team11Boggle {
 			this->startButton = (gcnew System::Windows::Forms::Button());
 			this->validWordBox = (gcnew System::Windows::Forms::TextBox());
 			this->addWordButton = (gcnew System::Windows::Forms::Button());
+			this->spinButton = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -366,7 +368,7 @@ namespace Team11Boggle {
 			// 
 			// startButton
 			// 
-			this->startButton->Location = System::Drawing::Point(396, 355);
+			this->startButton->Location = System::Drawing::Point(378, 355);
 			this->startButton->Name = L"startButton";
 			this->startButton->Size = System::Drawing::Size(114, 39);
 			this->startButton->TabIndex = 3;
@@ -380,12 +382,13 @@ namespace Team11Boggle {
 			this->validWordBox->Location = System::Drawing::Point(355, 51);
 			this->validWordBox->Multiline = true;
 			this->validWordBox->Name = L"validWordBox";
+			this->validWordBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->validWordBox->Size = System::Drawing::Size(172, 282);
 			this->validWordBox->TabIndex = 5;
 			// 
 			// addWordButton
 			// 
-			this->addWordButton->Location = System::Drawing::Point(124, 355);
+			this->addWordButton->Location = System::Drawing::Point(197, 355);
 			this->addWordButton->Name = L"addWordButton";
 			this->addWordButton->Size = System::Drawing::Size(116, 39);
 			this->addWordButton->TabIndex = 6;
@@ -395,11 +398,21 @@ namespace Team11Boggle {
 			this->addWordButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			this->addWordButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
+			// spinButton
+			// 
+			this->spinButton->Location = System::Drawing::Point(35, 355);
+			this->spinButton->Name = L"spinButton";
+			this->spinButton->Size = System::Drawing::Size(112, 39);
+			this->spinButton->TabIndex = 7;
+			this->spinButton->Text = L"Spin";
+			this->spinButton->UseVisualStyleBackColor = true;
+			// 
 			// BoggleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(539, 417);
+			this->Controls->Add(this->spinButton);
 			this->Controls->Add(this->addWordButton);
 			this->Controls->Add(this->validWordBox);
 			this->Controls->Add(this->startButton);

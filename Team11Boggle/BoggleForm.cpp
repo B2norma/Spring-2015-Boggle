@@ -91,20 +91,25 @@
 		/// <param name="sender">The sender.</param>
 		/// <param name="e">The e.</param>
 		void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {
-			for (int i = 0; i < this->word->Length; i++){
-				this->validWordBox->Text = this->word[i];
-			}
+			for (int i = 0; i < this->word->Length; i++){	
+				this->validWordBox->Text = this->word[i];				
+				}
 		}
 
 		void BoggleForm::getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 			
 			for (int i = 0; i < this->word->Length; i++){
 				Button^ btn = dynamic_cast<Button^>(sender);
-				this->validWord = btn->Text;
-				this->word[i] = this->validWord;				
+					this->validWord = btn->Text;
+					if (this->validWord == "Add"){
+						this->validWord = "\r\n";
+					}
+						this->word[i] += this->validWord;
+					
+				}
 			}
 			
-		}
+		
 
 		void BoggleForm::buttonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
 			this->btn2 = dynamic_cast<Button^>(sender);
@@ -120,14 +125,6 @@
 		void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
 
 			Button^ btn1 = dynamic_cast<Button^>(sender);
-
-			//Test for a possible solution
-			/*if (btn1->Location.X <= this->btn2->Location.X + 75 && btn1->Location.X >= this->btn2->Location.X - 75
-			&& btn1->Location.Y <= this->btn2->Location.Y + 75 && btn1->Location.Y >= this->btn2->Location.Y - 75){
-			this->btn2->Width = btn1->Width;
-			this->btn2->Height = btn1->Height;
-			btn1->BackColor = ForeColor.Blue;
-			}*/
 
 			if (this->btn2->Location.X <= btn1->Location.X &&
 				this->btn2->Location.X >= btn1->Location.Y && btn1->Location.Y >= this->btn2->Location.Y &&
