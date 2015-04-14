@@ -1,9 +1,11 @@
 #include "BoggleForm.h"
+#include "WordValidator.h"
 #include<cmath>
 #include<iostream>
+#include <fstream>
 
 		using namespace std;
-
+		using namespace System;
 		using namespace Team11Boggle;
 
 		[STAThreadAttribute]
@@ -13,12 +15,14 @@
 			Application::SetCompatibleTextRenderingDefault(false);
 
 			Application::Run(gcnew BoggleForm());
+			
 			return 0;
 		}
 
 		BoggleForm::BoggleForm(void)
 		{
 			this->validWord = "";
+			this->buttonList = gcnew List<Button^>(16);
 			this->word = gcnew array<String^>(16);
 			this->btn2 = this->button1;
 			srand(time(0));
@@ -59,7 +63,7 @@
 
 		void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 			this->Timer->Start();
-			this->populateGameBoard();
+			this->populateGameBoard();			
 		}
 
 		void BoggleForm::populateGameBoard(){
@@ -84,66 +88,99 @@
 			this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
 		}
 
+		void BoggleForm::clickedButtonList(Button^ clickedButton){
+			this->buttonList->Add(clickedButton);
+			
+		}
+
 		/// <summary>
 		/// Adds the word to validTextBox after being
 		/// validated in dictionary.
 		/// </summary>
 		/// <param name="sender">The sender.</param>
 		/// <param name="e">The e.</param>
-		void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {
+		void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {			
 			for (int i = 0; i < this->word->Length; i++){	
 				this->validWordBox->Text = this->word[i];				
 				}
+			
+			//resetButtonColor();	
+			resetButtonStyle();
+		}
+
+		void BoggleForm::resetButtonColor(){
+			for (int i = 0; i < this->buttonList->Count; i++){
+				this->buttonList[i]->ResetBackColor();				
+			} 
+		}
+
+		void BoggleForm::resetButtonStyle(){
+			for (int i = 0; i < this->buttonList->Count; i++){				
+				this->buttonList[i]->FlatStyle = FlatStyle::System;
+			}
 		}
 
 		void BoggleForm::getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 			
 			for (int i = 0; i < this->word->Length; i++){
 				Button^ btn = dynamic_cast<Button^>(sender);
-					this->validWord = btn->Text;
-					if (this->validWord == "Add"){
+				this->clickedButtonList(btn);
+				this->validWord = btn->Text;
+				
+					if (this->validWord == "Add"){						
 						this->validWord = "\r\n";
 					}
-						this->word[i] += this->validWord;
-					
-				}
-			}
-			
+					else if(this->validWord == " "){
+						this->validWord = "\r";
+					}
+					this->word[i] += this->validWord;
+			}	
+			}		
 		
-
-		void BoggleForm::buttonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e){
-			this->btn2 = dynamic_cast<Button^>(sender);
-			this->btn2->Location.X;
-		}
-
-		void BoggleForm::textClick2(System::Object^  sender, System::EventArgs^  e) {
-			this->btn2 = dynamic_cast<Button^>(sender);
-			Button^ btn = dynamic_cast<Button^>(sender);
-			String^ btnText = btn->Text;
-		}
-
 		void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
 
 			Button^ btn1 = dynamic_cast<Button^>(sender);
-
-			if (this->btn2->Location.X <= btn1->Location.X &&
-				this->btn2->Location.X >= btn1->Location.Y && btn1->Location.Y >= this->btn2->Location.Y &&
-				this->btn2->Location.Y <= btn1->Location.Y){
-				btn1->BackColor = ForeColor.Aqua;				
+			
+			if (1 > 0){
+				btn1->BackColor = ForeColor.Aqua; 
 			}
-			else {
-				btn1->BackColor = ForeColor.Red; //red indicates issues with algorithm
-			}
+						
 		}
+		
+		void BoggleForm::spinButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		/// <summary>
-		/// Test method to begin game with double click 
-		/// of game cube.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The e.</param>
-		void BoggleForm::onDoubleClick(System::Object^  sender, System::EventArgs^  e) {
-			Button^ firstBtn = dynamic_cast<Button^>(sender);
-			firstBtn->BackColor = ForeColor.Red;
+			String^ die1 = this->button1->Text;
+			String^ die2 = this->button2->Text;
+			String^ die3 = this->button3->Text;
+			String^ die4 = this->button4->Text;
+			String^ die5 = this->button5->Text;
+			String^ die6 = this->button6->Text;
+			String^ die7 = this->button7->Text;
+			String^ die8 = this->button8->Text;
+			String^ die9 = this->button9->Text;
+			String^ die10 = this->button10->Text;
+			String^ die11 = this->button11->Text;
+			String^ die12 = this->button12->Text;
+			String^ die13 = this->button13->Text;
+			String^ die14 = this->button14->Text;
+			String^ die15 = this->button15->Text;
+			String^ die16 = this->button16->Text;
+			
 
+			this->button16->Text = die4;
+			this->button15->Text = die8;
+			this->button14->Text = die12;
+			this->button13->Text = die16;
+			this->button12->Text = die3;
+			this->button11->Text = die7;
+			this->button10->Text = die11;
+			this->button9->Text = die15;
+			this->button8->Text = die2;
+			this->button7->Text = die6;
+			this->button6->Text = die10;
+			this->button5->Text = die14;
+			this->button4->Text = die1;
+			this->button3->Text = die5;
+			this->button2->Text = die9;
+			this->button1->Text = die13;
 		}

@@ -19,24 +19,28 @@ namespace Team11Boggle {
 	{		
 
 	private:
+	List<Button^> ^buttonList;
 	static int seconds = 60;
 	static int minutes = 2;
 	String^ sec;
 	String^ min;
 	array<String^> ^word;
 	String^ validWord;
+	Button^ btn2;
 	private: System::Windows::Forms::TextBox^  validWordBox;
 	private: System::Windows::Forms::Button^  addWordButton;
-	private: System::Windows::Forms::Button^  spinButton;
-
-
-			 Button^ btn2;
+	private: System::Windows::Forms::Button^  spinButton;			
 
 	System::Void addWord(System::Object^  sender, System::EventArgs^  e);	
-	System::Void textClick2(System::Object^  sender, System::EventArgs^  e);	
-	System::Void onDoubleClick(System::Object^  sender, System::EventArgs^  e);
-	System::Void buttonLocation(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
-	System::Void onClickLetter(System::Object^  sender, System::EventArgs^  e);		
+	System::Void onClickLetter(System::Object^  sender, System::EventArgs^  e);
+	System::Void spinButton_Click(System::Object^  sender, System::EventArgs^  e);	
+	System::Void getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
+	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+	System::Void populateGameBoard();
+	System::Void clickedButtonList(Button^ clickedButton);
+	System::Void resetButtonColor();
+	System::Void resetButtonStyle();
 
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
@@ -54,32 +58,15 @@ namespace Team11Boggle {
 	private: System::Windows::Forms::Button^  button14;
 	private: System::Windows::Forms::Button^  button15;
 	private: System::Windows::Forms::Button^  button16;
-			
-			 System::Void getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-	System::Void populateGameBoard();
-        
-	public:
-		BoggleForm(void);		
-
-	protected:
-		~BoggleForm();	
-	
 	private: System::Windows::Forms::Button^  startButton;
 	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
 	private: System::Windows::Forms::Timer^  Timer;
 	private: System::Windows::Forms::Label^  GameTimer;
 	private: System::ComponentModel::IContainer^  components;
-
-
-	protected:
-
-	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-
+	        
+	public:
+		BoggleForm(void);	
+		~BoggleForm();	
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -135,11 +122,12 @@ namespace Team11Boggle {
 			this->flowLayoutPanel1->Controls->Add(this->button16);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(12, 12);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(324, 324);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(325, 324);
 			this->flowLayoutPanel1->TabIndex = 1;
 			// 
 			// button1
 			// 
+			this->button1->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(3, 3);
@@ -148,11 +136,11 @@ namespace Team11Boggle {
 			this->button1->TabIndex = 0;
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
 			this->button1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button2
 			// 
+			this->button2->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button2->Location = System::Drawing::Point(84, 3);
@@ -161,12 +149,11 @@ namespace Team11Boggle {
 			this->button2->TabIndex = 1;
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button2->MouseCaptureChanged += gcnew System::EventHandler(this, &BoggleForm::textClick2);
-			this->button2->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
 			this->button2->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button3
 			// 
+			this->button3->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->Location = System::Drawing::Point(165, 3);
@@ -175,12 +162,12 @@ namespace Team11Boggle {
 			this->button3->TabIndex = 2;
 			this->button3->Tag = L"tag1";
 			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button3->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button3->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button3->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button4
 			// 
+			this->button4->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button4->Location = System::Drawing::Point(246, 3);
@@ -189,8 +176,7 @@ namespace Team11Boggle {
 			this->button4->TabIndex = 3;
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->EnabledChanged += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button4->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button4->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button4->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button4->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button5
@@ -202,8 +188,7 @@ namespace Team11Boggle {
 			this->button5->Size = System::Drawing::Size(75, 75);
 			this->button5->TabIndex = 4;
 			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button5->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button5->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button5->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button6
@@ -215,8 +200,7 @@ namespace Team11Boggle {
 			this->button6->Size = System::Drawing::Size(75, 75);
 			this->button6->TabIndex = 5;
 			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button6->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button6->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button6->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button7
@@ -228,8 +212,7 @@ namespace Team11Boggle {
 			this->button7->Size = System::Drawing::Size(75, 75);
 			this->button7->TabIndex = 6;
 			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button7->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button7->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button7->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button8
@@ -241,8 +224,7 @@ namespace Team11Boggle {
 			this->button8->Size = System::Drawing::Size(75, 75);
 			this->button8->TabIndex = 7;
 			this->button8->UseVisualStyleBackColor = true;
-			this->button8->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button8->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button8->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button8->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button9
@@ -254,8 +236,7 @@ namespace Team11Boggle {
 			this->button9->Size = System::Drawing::Size(75, 75);
 			this->button9->TabIndex = 8;
 			this->button9->UseVisualStyleBackColor = true;
-			this->button9->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button9->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button9->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button9->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button10
@@ -267,8 +248,7 @@ namespace Team11Boggle {
 			this->button10->Size = System::Drawing::Size(75, 75);
 			this->button10->TabIndex = 9;
 			this->button10->UseVisualStyleBackColor = true;
-			this->button10->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button10->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button10->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button10->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button11
@@ -280,8 +260,7 @@ namespace Team11Boggle {
 			this->button11->Size = System::Drawing::Size(75, 75);
 			this->button11->TabIndex = 10;
 			this->button11->UseVisualStyleBackColor = true;
-			this->button11->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button11->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button11->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button11->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button12
@@ -293,8 +272,7 @@ namespace Team11Boggle {
 			this->button12->Size = System::Drawing::Size(75, 75);
 			this->button12->TabIndex = 11;
 			this->button12->UseVisualStyleBackColor = true;
-			this->button12->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button12->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button12->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button12->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button13
@@ -306,8 +284,7 @@ namespace Team11Boggle {
 			this->button13->Size = System::Drawing::Size(75, 75);
 			this->button13->TabIndex = 12;
 			this->button13->UseVisualStyleBackColor = true;
-			this->button13->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button13->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button13->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button13->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button14
@@ -319,8 +296,7 @@ namespace Team11Boggle {
 			this->button14->Size = System::Drawing::Size(75, 75);
 			this->button14->TabIndex = 13;
 			this->button14->UseVisualStyleBackColor = true;
-			this->button14->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button14->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button14->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button14->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button15
@@ -332,8 +308,7 @@ namespace Team11Boggle {
 			this->button15->Size = System::Drawing::Size(75, 75);
 			this->button15->TabIndex = 14;
 			this->button15->UseVisualStyleBackColor = true;
-			this->button15->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button15->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button15->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button15->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// button16
@@ -345,8 +320,7 @@ namespace Team11Boggle {
 			this->button16->Size = System::Drawing::Size(75, 75);
 			this->button16->TabIndex = 15;
 			this->button16->UseVisualStyleBackColor = true;
-			this->button16->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button16->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::buttonLocation);
+			this->button16->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);			
 			this->button16->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// Timer
@@ -388,6 +362,8 @@ namespace Team11Boggle {
 			// 
 			// addWordButton
 			// 
+			this->addWordButton->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->addWordButton->ForeColor = System::Drawing::SystemColors::Control;
 			this->addWordButton->Location = System::Drawing::Point(197, 355);
 			this->addWordButton->Name = L"addWordButton";
 			this->addWordButton->Size = System::Drawing::Size(116, 39);
@@ -396,7 +372,6 @@ namespace Team11Boggle {
 			this->addWordButton->UseVisualStyleBackColor = true;
 			this->addWordButton->Click += gcnew System::EventHandler(this, &BoggleForm::addWord);
 			this->addWordButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
-			this->addWordButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
 			// 
 			// spinButton
 			// 
@@ -406,11 +381,13 @@ namespace Team11Boggle {
 			this->spinButton->TabIndex = 7;
 			this->spinButton->Text = L"Spin";
 			this->spinButton->UseVisualStyleBackColor = true;
+			this->spinButton->Click += gcnew System::EventHandler(this, &BoggleForm::spinButton_Click);
 			// 
 			// BoggleForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(539, 417);
 			this->Controls->Add(this->spinButton);
 			this->Controls->Add(this->addWordButton);
@@ -426,7 +403,7 @@ namespace Team11Boggle {
 
 		}
 #pragma endregion	
-
+		
 };
 }
 
