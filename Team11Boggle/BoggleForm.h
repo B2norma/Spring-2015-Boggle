@@ -33,6 +33,7 @@ namespace Team11Boggle {
 	private: System::Windows::Forms::Button^  quitButton;
 	private: System::Windows::Forms::Button^  viewScoresButton;
 	private: System::Windows::Forms::Button^  spinButton;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;
 	private: ResourceManager^ resourceManager;
 	
 	String^ buildWord();
@@ -100,6 +101,7 @@ namespace Team11Boggle {
 			this->button14 = (gcnew System::Windows::Forms::Button());
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->button16 = (gcnew System::Windows::Forms::Button());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->Timer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->GameTimer = (gcnew System::Windows::Forms::Label());
 			this->startButton = (gcnew System::Windows::Forms::Button());
@@ -113,6 +115,7 @@ namespace Team11Boggle {
 			// 
 			// flowLayoutPanel1
 			// 
+			this->flowLayoutPanel1->Controls->Add(this->tableLayoutPanel1);
 			this->flowLayoutPanel1->Controls->Add(this->button1);
 			this->flowLayoutPanel1->Controls->Add(this->button2);
 			this->flowLayoutPanel1->Controls->Add(this->button3);
@@ -139,7 +142,7 @@ namespace Team11Boggle {
 			this->button1->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(3, 3);
+			this->button1->Location = System::Drawing::Point(3, 167);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 75);
 			this->button1->TabIndex = 0;
@@ -152,7 +155,7 @@ namespace Team11Boggle {
 			this->button2->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(84, 3);
+			this->button2->Location = System::Drawing::Point(84, 167);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 75);
 			this->button2->TabIndex = 1;
@@ -165,7 +168,7 @@ namespace Team11Boggle {
 			this->button3->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(165, 3);
+			this->button3->Location = System::Drawing::Point(165, 167);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 75);
 			this->button3->TabIndex = 2;
@@ -179,7 +182,7 @@ namespace Team11Boggle {
 			this->button4->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(246, 3);
+			this->button4->Location = System::Drawing::Point(246, 167);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 75);
 			this->button4->TabIndex = 3;
@@ -192,7 +195,7 @@ namespace Team11Boggle {
 			// 
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->Location = System::Drawing::Point(3, 84);
+			this->button5->Location = System::Drawing::Point(3, 248);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(75, 75);
 			this->button5->TabIndex = 4;
@@ -204,7 +207,7 @@ namespace Team11Boggle {
 			// 
 			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button6->Location = System::Drawing::Point(84, 84);
+			this->button6->Location = System::Drawing::Point(84, 248);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 75);
 			this->button6->TabIndex = 5;
@@ -216,7 +219,7 @@ namespace Team11Boggle {
 			// 
 			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button7->Location = System::Drawing::Point(165, 84);
+			this->button7->Location = System::Drawing::Point(165, 248);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(75, 75);
 			this->button7->TabIndex = 6;
@@ -228,7 +231,7 @@ namespace Team11Boggle {
 			// 
 			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button8->Location = System::Drawing::Point(246, 84);
+			this->button8->Location = System::Drawing::Point(246, 248);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(75, 75);
 			this->button8->TabIndex = 7;
@@ -240,7 +243,7 @@ namespace Team11Boggle {
 			// 
 			this->button9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button9->Location = System::Drawing::Point(3, 165);
+			this->button9->Location = System::Drawing::Point(3, 329);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(75, 75);
 			this->button9->TabIndex = 8;
@@ -252,7 +255,7 @@ namespace Team11Boggle {
 			// 
 			this->button10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button10->Location = System::Drawing::Point(84, 165);
+			this->button10->Location = System::Drawing::Point(84, 329);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(75, 75);
 			this->button10->TabIndex = 9;
@@ -264,7 +267,7 @@ namespace Team11Boggle {
 			// 
 			this->button11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button11->Location = System::Drawing::Point(165, 165);
+			this->button11->Location = System::Drawing::Point(165, 329);
 			this->button11->Name = L"button11";
 			this->button11->Size = System::Drawing::Size(75, 75);
 			this->button11->TabIndex = 10;
@@ -276,7 +279,7 @@ namespace Team11Boggle {
 			// 
 			this->button12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button12->Location = System::Drawing::Point(246, 165);
+			this->button12->Location = System::Drawing::Point(246, 329);
 			this->button12->Name = L"button12";
 			this->button12->Size = System::Drawing::Size(75, 75);
 			this->button12->TabIndex = 11;
@@ -288,7 +291,7 @@ namespace Team11Boggle {
 			// 
 			this->button13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button13->Location = System::Drawing::Point(3, 246);
+			this->button13->Location = System::Drawing::Point(3, 410);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(75, 75);
 			this->button13->TabIndex = 12;
@@ -300,7 +303,7 @@ namespace Team11Boggle {
 			// 
 			this->button14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button14->Location = System::Drawing::Point(84, 246);
+			this->button14->Location = System::Drawing::Point(84, 410);
 			this->button14->Name = L"button14";
 			this->button14->Size = System::Drawing::Size(75, 75);
 			this->button14->TabIndex = 13;
@@ -312,7 +315,7 @@ namespace Team11Boggle {
 			// 
 			this->button15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button15->Location = System::Drawing::Point(165, 246);
+			this->button15->Location = System::Drawing::Point(165, 410);
 			this->button15->Name = L"button15";
 			this->button15->Size = System::Drawing::Size(75, 75);
 			this->button15->TabIndex = 14;
@@ -324,13 +327,33 @@ namespace Team11Boggle {
 			// 
 			this->button16->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button16->Location = System::Drawing::Point(246, 246);
+			this->button16->Location = System::Drawing::Point(246, 410);
 			this->button16->Name = L"button16";
 			this->button16->Size = System::Drawing::Size(75, 75);
 			this->button16->TabIndex = 15;
 			this->button16->UseVisualStyleBackColor = true;
 			this->button16->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
 			this->button16->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			// 
+			// tableLayoutPanel1
+			// 
+			this->tableLayoutPanel1->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::Inset;
+			this->tableLayoutPanel1->ColumnCount = 2;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				50)));
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				50)));
+			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 3);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 6;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50.92593F)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 49.07407F)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 15)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(318, 158);
+			this->tableLayoutPanel1->TabIndex = 10;
 			// 
 			// Timer
 			// 
