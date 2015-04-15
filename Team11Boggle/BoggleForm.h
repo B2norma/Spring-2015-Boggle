@@ -68,6 +68,7 @@ namespace Team11Boggle {
 	private: System::Void setupGameBoard();
 	private: String^ buildWord();
 	private: System::Void printWordsInTextBox();
+	private: System::Void buildValidWordList();
 	
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;

@@ -8,17 +8,6 @@ using namespace std;
 using namespace System;
 using namespace Team11Boggle;
 
-	[STAThreadAttribute]
-	int main(array<System::String ^> ^args)
-	{
-		Application::EnableVisualStyles();
-		Application::SetCompatibleTextRenderingDefault(false);
-
-		Application::Run(gcnew BoggleForm());
-
-		return 0;
-	}
-
 	BoggleForm::BoggleForm(void)
 	{
 		this->validWord = "";
@@ -53,8 +42,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::submitButton_Click(System::Object^  sender, System::EventArgs^  e) {
-
-		this->words->Add(this->buildWord());
+				
+		this->buildValidWordList();
 		this->printWordsInTextBox();
 		this->letters->Clear();
 		this->spinButton->Enabled = true;
@@ -526,16 +515,27 @@ using namespace Team11Boggle;
 	}
 
 	String^ BoggleForm::buildWord(){
-
+		WordValidator wordValidator;
 		String^ word = gcnew String("");
 
 		for each (String^ letter in this->letters)
 		{
 			word += letter;
 		}
-
-		return word;
+		return word;		
 	}
+
+	void BoggleForm::buildValidWordList(){
+		WordValidator wordValidator;
+		String^ wordToValidate = this->buildWord();
+
+		if (wordValidator.validateWord(wordToValidate) == true
+			&& this->words->Contains(wordToValidate) == false &&
+			wordToValidate->Length > 2){
+			this->words->Add(wordToValidate);
+		}		
+	}
+
 
 	void BoggleForm::printWordsInTextBox(){
 
