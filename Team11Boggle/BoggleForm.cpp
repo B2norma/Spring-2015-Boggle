@@ -23,10 +23,16 @@ using namespace Team11Boggle;
 	{
 		this->validWord = "";
 		this->buttonList = gcnew List<Button^>(16);
-		this->word = gcnew array<String^>(16);
-		this->btn2 = this->button1;
+		this->word = gcnew array<String^>(16);		
 		srand(time(0));
 		InitializeComponent();
+		this->resourceManager = gcnew Resources::ResourceManager(L"Team11Boggle.OutputStrings", this->GetType()->Assembly);
+		this->addWordButton->Text = this->resourceManager->GetString(L"AddButtonText");
+		this->spinButton->Text = this->resourceManager->GetString(L"SpinButtonText");
+		this->quitButton->Text = this->resourceManager->GetString(L"QuitButtonText");
+		this->viewScoresButton->Text = this->resourceManager->GetString(L"ViewScoreButtonText");
+		this->startButton->Text = this->resourceManager->GetString(L"StartButtonText");
+		this->Text = this->resourceManager->GetString(L"FormTitle");
 	}
 
 
@@ -100,7 +106,6 @@ using namespace Team11Boggle;
 
 	void BoggleForm::clickedButtonList(Button^ clickedButton){
 		this->buttonList->Add(clickedButton);
-
 	}
 
 	/// <summary>
@@ -109,13 +114,25 @@ using namespace Team11Boggle;
 	/// </summary>
 	/// <param name="sender">The sender.</param>
 	/// <param name="e">The e.</param>
-	void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {
-		for (int i = 0; i < this->word->Length; i++){
-			this->validWordBox->Text = this->word[i];
-		}
+	void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {	
+		String^ wordToCheck = this->buildWord();		
+		WordValidator test;
+		String^ wordPassedValidation = test.validateWord(wordToCheck);
+		this->validWordBox->Text = wordPassedValidation;
+		/*for (int i = 0; i < this->word->Length; i++){			
+			this->validWordBox->Text = this->word[i] + "\n";						
+		}*/		
+		this->resetButtonStyle();
+	}
 
-		//resetButtonColor();	
-		//resetButtonStyle(sender, e);
+	
+	String^ BoggleForm::buildWord(){
+		
+		for (int i = 0; i < this->word->Length; i++){
+		this->validWord = this->word[i];
+		}
+		
+		return this->validWord;
 	}
 
 	void BoggleForm::resetButtonColor(){
@@ -124,7 +141,7 @@ using namespace Team11Boggle;
 		}
 	}
 
-	void BoggleForm::resetButtonStyle(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e){
+	void BoggleForm::resetButtonStyle(){
 		for (int i = 0; i < this->buttonList->Count; i++){
 			this->buttonList[i]->FlatStyle = FlatStyle::System;
 		}
@@ -143,7 +160,7 @@ using namespace Team11Boggle;
 			else if (this->validWord == " "){
 				this->validWord = "\r";
 			}
-			this->word[i] += this->validWord;
+			this->word[i] += this->validWord->ToLower();
 		}
 	}
 
@@ -195,40 +212,9 @@ using namespace Team11Boggle;
 		this->button1->Text = die13;
 	}
 
-	void BoggleForm::button1_MouseHover(System::Object^  sender, System::EventArgs^  e) {
-		bool test = false;
+	void BoggleForm::quitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		Button^ btn1 = dynamic_cast<Button^>(sender);		
-		btn1->BackColor = ForeColor.Red;
-
-
-		for (int i = 0; i < this->word->Length; i++){
-			Button^ btn = dynamic_cast<Button^>(sender);
-			this->clickedButtonList(btn);
-			this->validWord = btn->Text;
-
-			if (this->validWord == "Add"){
-				this->validWord = "\r\n";
-			}
-			else if (this->validWord == " "){
-				this->validWord = "\r";
-			}
-			this->word[i] += this->validWord;
-		}
-	
+		this->Close();
 	}
-
-	void BoggleForm::button2_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		Button^ btn1 = dynamic_cast<Button^>(sender);
-		btn1->BackColor = ForeColor.Red; 
-
 		
-
-	
-		
-	}
-
-	void BoggleForm::button1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e){
-		Button^ btn = dynamic_cast<Button^>(sender);		
-	}
 	

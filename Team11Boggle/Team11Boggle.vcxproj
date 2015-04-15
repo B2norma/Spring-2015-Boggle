@@ -104,6 +104,7 @@
     <EmbeddedResource Include="BoggleForm.resx">
       <DependentUpon>BoggleForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OutputStrings.resx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
