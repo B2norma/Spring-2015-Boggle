@@ -20,38 +20,54 @@ namespace Team11Boggle {
 	{		
 
 	private:
-	List<Button^> ^buttonList;
+	List<Button^> ^buttons;
+	List<String^> ^letters;
+	List<String^> ^words;
 	static int seconds = 60;
 	static int minutes = 2;
 	String^ sec;
 	String^ min;
-	array<String^> ^word;
 	String^ validWord;
 		
 	private: System::Windows::Forms::TextBox^  validWordBox;
-	private: System::Windows::Forms::Button^  addWordButton;
+	private: System::Windows::Forms::Button^  submitButton;
+
 	private: System::Windows::Forms::Button^  quitButton;
 	private: System::Windows::Forms::Button^  viewScoresButton;
 	private: System::Windows::Forms::Button^  spinButton;
-	private: System::Windows::Forms::TableLayoutPanel^  scoreBoardPanel;
 
 	private: ResourceManager^ resourceManager;
 	
-	String^ buildWord();
-	System::Void addWord(System::Object^  sender, System::EventArgs^  e);	
-	System::Void onClickLetter(System::Object^  sender, System::EventArgs^  e);
+	System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button2_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button3_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button4_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button5_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button6_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button7_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button8_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button9_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button10_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button11_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button12_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button13_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button14_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button15_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void button16_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void submitButton_Click(System::Object^  sender, System::EventArgs^  e);
 	System::Void spinButton_Click(System::Object^  sender, System::EventArgs^  e);	
-	System::Void getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
 	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-	System::Void populateGameBoard();
-	System::Void clickedButtonList(Button^ clickedButton);
-	System::Void resetButtonColor();
-	System::Void resetButtonStyle();	
-	System::Void reset_Timer(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-	System::Void quitButton_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void viewScoresButton_Click(System::Object^  sender, System::EventArgs^  e);
-	
+	System::Void populateRandomLetters();	
+	System::Void resetTimer();
+	private: System::Void quitButton_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void buildButtonList();
+	private: System::Void enableAllLetters();
+	private: System::Void disableAllLetters();
+	private: System::Void disableAllBlueLetters();
+	private: System::Void setupGameBoard();
+	private: String^ buildWord();
+	private: System::Void printWordsInTextBox();
 	
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
@@ -104,12 +120,11 @@ namespace Team11Boggle {
 			this->button14 = (gcnew System::Windows::Forms::Button());
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->button16 = (gcnew System::Windows::Forms::Button());
-			this->scoreBoardPanel = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->Timer = (gcnew System::Windows::Forms::Timer(this->components));
 			this->GameTimer = (gcnew System::Windows::Forms::Label());
 			this->startButton = (gcnew System::Windows::Forms::Button());
 			this->validWordBox = (gcnew System::Windows::Forms::TextBox());
-			this->addWordButton = (gcnew System::Windows::Forms::Button());
+			this->submitButton = (gcnew System::Windows::Forms::Button());
 			this->spinButton = (gcnew System::Windows::Forms::Button());
 			this->quitButton = (gcnew System::Windows::Forms::Button());
 			this->viewScoresButton = (gcnew System::Windows::Forms::Button());
@@ -134,7 +149,6 @@ namespace Team11Boggle {
 			this->flowLayoutPanel1->Controls->Add(this->button14);
 			this->flowLayoutPanel1->Controls->Add(this->button15);
 			this->flowLayoutPanel1->Controls->Add(this->button16);
-			this->flowLayoutPanel1->Controls->Add(this->scoreBoardPanel);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(12, 12);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
 			this->flowLayoutPanel1->Size = System::Drawing::Size(325, 324);
@@ -143,221 +157,214 @@ namespace Team11Boggle {
 			// button1
 			// 
 			this->button1->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->button1->BackColor = System::Drawing::Color::LightGray;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(3, 3);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 75);
 			this->button1->TabIndex = 0;
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &BoggleForm::button1_Click);
 			// 
 			// button2
 			// 
 			this->button2->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->button2->BackColor = System::Drawing::Color::LightGray;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button2->Location = System::Drawing::Point(84, 3);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 75);
 			this->button2->TabIndex = 1;
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button2->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &BoggleForm::button2_Click);
 			// 
 			// button3
 			// 
 			this->button3->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->button3->BackColor = System::Drawing::Color::LightGray;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->Location = System::Drawing::Point(165, 3);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 75);
 			this->button3->TabIndex = 2;
-			this->button3->Tag = L"tag1";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button3->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &BoggleForm::button3_Click);
 			// 
 			// button4
 			// 
 			this->button4->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->button4->BackColor = System::Drawing::Color::LightGray;
+			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button4->Location = System::Drawing::Point(246, 3);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 75);
 			this->button4->TabIndex = 3;
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->EnabledChanged += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button4->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button4->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &BoggleForm::button4_Click);
 			// 
 			// button5
 			// 
+			this->button5->BackColor = System::Drawing::Color::LightGray;
+			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button5->Location = System::Drawing::Point(3, 84);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(75, 75);
 			this->button5->TabIndex = 4;
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button5->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button5->UseVisualStyleBackColor = false;
+			this->button5->Click += gcnew System::EventHandler(this, &BoggleForm::button5_Click);
 			// 
 			// button6
 			// 
+			this->button6->BackColor = System::Drawing::Color::LightGray;
+			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button6->Location = System::Drawing::Point(84, 84);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 75);
 			this->button6->TabIndex = 5;
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button6->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button6->UseVisualStyleBackColor = false;
+			this->button6->Click += gcnew System::EventHandler(this, &BoggleForm::button6_Click);
 			// 
 			// button7
 			// 
+			this->button7->BackColor = System::Drawing::Color::LightGray;
+			this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button7->Location = System::Drawing::Point(165, 84);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(75, 75);
 			this->button7->TabIndex = 6;
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button7->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button7->UseVisualStyleBackColor = false;
+			this->button7->Click += gcnew System::EventHandler(this, &BoggleForm::button7_Click);
 			// 
 			// button8
 			// 
+			this->button8->BackColor = System::Drawing::Color::LightGray;
+			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button8->Location = System::Drawing::Point(246, 84);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(75, 75);
 			this->button8->TabIndex = 7;
-			this->button8->UseVisualStyleBackColor = true;
-			this->button8->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button8->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button8->UseVisualStyleBackColor = false;
+			this->button8->Click += gcnew System::EventHandler(this, &BoggleForm::button8_Click);
 			// 
 			// button9
 			// 
+			this->button9->BackColor = System::Drawing::Color::LightGray;
+			this->button9->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button9->Location = System::Drawing::Point(3, 165);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(75, 75);
 			this->button9->TabIndex = 8;
-			this->button9->UseVisualStyleBackColor = true;
-			this->button9->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button9->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button9->UseVisualStyleBackColor = false;
+			this->button9->Click += gcnew System::EventHandler(this, &BoggleForm::button9_Click);
 			// 
 			// button10
 			// 
+			this->button10->BackColor = System::Drawing::Color::LightGray;
+			this->button10->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button10->Location = System::Drawing::Point(84, 165);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(75, 75);
 			this->button10->TabIndex = 9;
-			this->button10->UseVisualStyleBackColor = true;
-			this->button10->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button10->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button10->UseVisualStyleBackColor = false;
+			this->button10->Click += gcnew System::EventHandler(this, &BoggleForm::button10_Click);
 			// 
 			// button11
 			// 
+			this->button11->BackColor = System::Drawing::Color::LightGray;
+			this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button11->Location = System::Drawing::Point(165, 165);
 			this->button11->Name = L"button11";
 			this->button11->Size = System::Drawing::Size(75, 75);
 			this->button11->TabIndex = 10;
-			this->button11->UseVisualStyleBackColor = true;
-			this->button11->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button11->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button11->UseVisualStyleBackColor = false;
+			this->button11->Click += gcnew System::EventHandler(this, &BoggleForm::button11_Click);
 			// 
 			// button12
 			// 
+			this->button12->BackColor = System::Drawing::Color::LightGray;
+			this->button12->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button12->Location = System::Drawing::Point(246, 165);
 			this->button12->Name = L"button12";
 			this->button12->Size = System::Drawing::Size(75, 75);
 			this->button12->TabIndex = 11;
-			this->button12->UseVisualStyleBackColor = true;
-			this->button12->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button12->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button12->UseVisualStyleBackColor = false;
+			this->button12->Click += gcnew System::EventHandler(this, &BoggleForm::button12_Click);
 			// 
 			// button13
 			// 
+			this->button13->BackColor = System::Drawing::Color::LightGray;
+			this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button13->Location = System::Drawing::Point(3, 246);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(75, 75);
 			this->button13->TabIndex = 12;
-			this->button13->UseVisualStyleBackColor = true;
-			this->button13->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button13->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button13->UseVisualStyleBackColor = false;
+			this->button13->Click += gcnew System::EventHandler(this, &BoggleForm::button13_Click);
 			// 
 			// button14
 			// 
+			this->button14->BackColor = System::Drawing::Color::LightGray;
+			this->button14->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button14->Location = System::Drawing::Point(84, 246);
 			this->button14->Name = L"button14";
 			this->button14->Size = System::Drawing::Size(75, 75);
 			this->button14->TabIndex = 13;
-			this->button14->UseVisualStyleBackColor = true;
-			this->button14->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button14->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button14->UseVisualStyleBackColor = false;
+			this->button14->Click += gcnew System::EventHandler(this, &BoggleForm::button14_Click);
 			// 
 			// button15
 			// 
+			this->button15->BackColor = System::Drawing::Color::LightGray;
+			this->button15->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button15->Location = System::Drawing::Point(165, 246);
 			this->button15->Name = L"button15";
 			this->button15->Size = System::Drawing::Size(75, 75);
 			this->button15->TabIndex = 14;
-			this->button15->UseVisualStyleBackColor = true;
-			this->button15->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button15->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->button15->UseVisualStyleBackColor = false;
+			this->button15->Click += gcnew System::EventHandler(this, &BoggleForm::button15_Click);
 			// 
 			// button16
 			// 
+			this->button16->BackColor = System::Drawing::Color::LightGray;
+			this->button16->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button16->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button16->Location = System::Drawing::Point(246, 246);
 			this->button16->Name = L"button16";
 			this->button16->Size = System::Drawing::Size(75, 75);
 			this->button16->TabIndex = 15;
-			this->button16->UseVisualStyleBackColor = true;
-			this->button16->Click += gcnew System::EventHandler(this, &BoggleForm::onClickLetter);
-			this->button16->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
-			// 
-			// scoreBoardPanel
-			// 
-			this->scoreBoardPanel->AutoScroll = true;
-			this->scoreBoardPanel->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::Inset;
-			this->scoreBoardPanel->ColumnCount = 2;
-			this->scoreBoardPanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				50)));
-			this->scoreBoardPanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				50)));
-			this->scoreBoardPanel->Location = System::Drawing::Point(3, 327);
-			this->scoreBoardPanel->Name = L"scoreBoardPanel";
-			this->scoreBoardPanel->RowCount = 6;
-			this->scoreBoardPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 23)));
-			this->scoreBoardPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 24)));
-			this->scoreBoardPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 25)));
-			this->scoreBoardPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 23)));
-			this->scoreBoardPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 26)));
-			this->scoreBoardPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 8)));
-			this->scoreBoardPanel->Size = System::Drawing::Size(318, 158);
-			this->scoreBoardPanel->TabIndex = 10;
+			this->button16->UseVisualStyleBackColor = false;
+			this->button16->Click += gcnew System::EventHandler(this, &BoggleForm::button16_Click);
 			// 
 			// Timer
 			// 
@@ -396,18 +403,17 @@ namespace Team11Boggle {
 			this->validWordBox->Size = System::Drawing::Size(172, 282);
 			this->validWordBox->TabIndex = 5;
 			// 
-			// addWordButton
+			// submitButton
 			// 
-			this->addWordButton->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->addWordButton->ForeColor = System::Drawing::SystemColors::Control;
-			this->addWordButton->Location = System::Drawing::Point(177, 353);
-			this->addWordButton->Name = L"addWordButton";
-			this->addWordButton->Size = System::Drawing::Size(75, 39);
-			this->addWordButton->TabIndex = 6;
-			this->addWordButton->Text = L"Add";
-			this->addWordButton->UseVisualStyleBackColor = true;
-			this->addWordButton->Click += gcnew System::EventHandler(this, &BoggleForm::addWord);
-			this->addWordButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &BoggleForm::getWord);
+			this->submitButton->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->submitButton->ForeColor = System::Drawing::SystemColors::Control;
+			this->submitButton->Location = System::Drawing::Point(177, 353);
+			this->submitButton->Name = L"submitButton";
+			this->submitButton->Size = System::Drawing::Size(75, 39);
+			this->submitButton->TabIndex = 6;
+			this->submitButton->Text = L"Submit";
+			this->submitButton->UseVisualStyleBackColor = true;
+			this->submitButton->Click += gcnew System::EventHandler(this, &BoggleForm::submitButton_Click);
 			// 
 			// spinButton
 			// 
@@ -437,7 +443,6 @@ namespace Team11Boggle {
 			this->viewScoresButton->TabIndex = 9;
 			this->viewScoresButton->Text = L"View Scores";
 			this->viewScoresButton->UseVisualStyleBackColor = true;
-			this->viewScoresButton->Click += gcnew System::EventHandler(this, &BoggleForm::viewScoresButton_Click);
 			// 
 			// BoggleForm
 			// 
@@ -445,12 +450,12 @@ namespace Team11Boggle {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(539, 417);
-			this->Controls->Add(this->startButton);
 			this->Controls->Add(this->viewScoresButton);
 			this->Controls->Add(this->quitButton);
 			this->Controls->Add(this->spinButton);
-			this->Controls->Add(this->addWordButton);
+			this->Controls->Add(this->submitButton);
 			this->Controls->Add(this->validWordBox);
+			this->Controls->Add(this->startButton);
 			this->Controls->Add(this->GameTimer);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"BoggleForm";

@@ -8,20 +8,36 @@ using namespace std;
 using namespace System;
 using namespace Team11Boggle;
 
+	[STAThreadAttribute]
+	int main(array<System::String ^> ^args)
+	{
+		Application::EnableVisualStyles();
+		Application::SetCompatibleTextRenderingDefault(false);
+
+		Application::Run(gcnew BoggleForm());
+
+		return 0;
+	}
+
 	BoggleForm::BoggleForm(void)
 	{
 		this->validWord = "";
-		this->buttonList = gcnew List<Button^>(16);
-		this->word = gcnew array<String^>(16);		
+		this->buttons = gcnew List<Button^>(16);
+		this->letters = gcnew List<String^>();
+		this->words = gcnew List<String^>();		
 		srand(time(0));
 		InitializeComponent();
 		this->resourceManager = gcnew Resources::ResourceManager(L"Team11Boggle.OutputStrings", this->GetType()->Assembly);
-		this->addWordButton->Text = this->resourceManager->GetString(L"AddButtonText");
+		this->submitButton->Text = this->resourceManager->GetString(L"AddButtonText");
 		this->spinButton->Text = this->resourceManager->GetString(L"SpinButtonText");
 		this->quitButton->Text = this->resourceManager->GetString(L"QuitButtonText");
 		this->viewScoresButton->Text = this->resourceManager->GetString(L"ViewScoreButtonText");
 		this->startButton->Text = this->resourceManager->GetString(L"StartButtonText");
 		this->Text = this->resourceManager->GetString(L"FormTitle");
+		this->buildButtonList();
+		this->disableAllLetters();
+		this->submitButton->Enabled = false;
+		this->spinButton->Enabled = false;
 	}
 
 
@@ -36,6 +52,14 @@ using namespace Team11Boggle;
 		}
 	}
 
+	void BoggleForm::submitButton_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		this->words->Add(this->buildWord());
+		this->printWordsInTextBox();
+		this->letters->Clear();
+		this->spinButton->Enabled = true;
+		this->enableAllLetters();
+	}
 
 	void BoggleForm::Timer_Tick(System::Object^  sender, System::EventArgs^  e) {
 
@@ -56,24 +80,53 @@ using namespace Team11Boggle;
 
 	}
 
-
-	void BoggleForm::reset_Timer(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e){
+	void BoggleForm::resetTimer(){
 		this->Timer->Enabled = false;
 		GameTimer->Text = "3:00";
 		this->seconds = 60;
 		this->minutes = 2;
 	}
+
+	void BoggleForm::setupGameBoard(){
+
+		this->words->Clear();
+		this->validWordBox->Text = "";
+		this->populateRandomLetters();
+		this->enableAllLetters();
+		this->spinButton->Enabled = true;
+		this->submitButton->Enabled = true;
+		this->resetTimer();
+	}
 		
 
 	void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		reset_Timer(sender, e);
+		this->setupGameBoard();
 		this->Timer->Start();
-		this->populateGameBoard();
 		
 	}
 
+	void BoggleForm::buildButtonList(){
 
-	void BoggleForm::populateGameBoard(){
+		this->buttons->Add(this->button1);
+		this->buttons->Add(this->button2);
+		this->buttons->Add(this->button3);
+		this->buttons->Add(this->button4);
+		this->buttons->Add(this->button5);
+		this->buttons->Add(this->button6);
+		this->buttons->Add(this->button7);
+		this->buttons->Add(this->button8);
+		this->buttons->Add(this->button9);
+		this->buttons->Add(this->button10);
+		this->buttons->Add(this->button11);
+		this->buttons->Add(this->button12);
+		this->buttons->Add(this->button13);
+		this->buttons->Add(this->button14);
+		this->buttons->Add(this->button15);
+		this->buttons->Add(this->button16);
+
+	}
+
+	void BoggleForm::populateRandomLetters(){
 
 		DiceBag^ diceBag = gcnew DiceBag();
 
@@ -95,82 +148,316 @@ using namespace Team11Boggle;
 		this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
 	}
 
+	void BoggleForm::button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	void BoggleForm::clickedButtonList(Button^ clickedButton){
-		this->buttonList->Add(clickedButton);
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button1->Text);
+		
+		this->button1->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button2->Enabled = true;
+		this->button5->Enabled = true;
+		this->button6->Enabled = true;
+
+		this->disableAllBlueLetters();
 	}
 
+	void BoggleForm::button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	/// <summary>
-	/// Adds the word to validTextBox after being
-	/// validated in dictionary.
-	/// </summary>
-	/// <param name="sender">The sender.</param>
-	/// <param name="e">The e.</param>
-	void BoggleForm::addWord(System::Object^  sender, System::EventArgs^  e) {	
-		String^ wordToCheck = this->buildWord();		
-		WordValidator test;
-		String^ wordPassedValidation = test.validateWord(wordToCheck);
-		this->validWordBox->Text = wordPassedValidation;
-		/*for (int i = 0; i < this->word->Length; i++){			
-			this->validWordBox->Text = this->word[i] + "\n";						
-		}*/		
-		this->resetButtonStyle();
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button2->Text);
+
+		this->button2->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button1->Enabled = true;
+		this->button3->Enabled = true;
+		this->button5->Enabled = true;
+		this->button6->Enabled = true;
+		this->button7->Enabled = true;
+
+		this->disableAllBlueLetters();
 	}
+
+	void BoggleForm::button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button3->Text);
+
+		this->button3->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button2->Enabled = true;
+		this->button4->Enabled = true;
+		this->button6->Enabled = true;
+		this->button7->Enabled = true;
+		this->button8->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button4_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button4->Text);
+
+		this->button4->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button3->Enabled = true;
+		this->button7->Enabled = true;
+		this->button8->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button5_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button5->Text);
+
+		this->button5->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button1->Enabled = true;
+		this->button2->Enabled = true;
+		this->button6->Enabled = true;
+		this->button9->Enabled = true;
+		this->button10->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button6_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button6->Text);
+
+		this->button6->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button1->Enabled = true;
+		this->button2->Enabled = true;
+		this->button3->Enabled = true;
+		this->button5->Enabled = true;
+		this->button7->Enabled = true;
+		this->button9->Enabled = true;
+		this->button10->Enabled = true;
+		this->button11->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button7_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button7->Text);
+
+		this->button7->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button2->Enabled = true;
+		this->button3->Enabled = true;
+		this->button4->Enabled = true;
+		this->button6->Enabled = true;
+		this->button8->Enabled = true;
+		this->button10->Enabled = true;
+		this->button11->Enabled = true;
+		this->button12->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button8_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button8->Text);
+
+		this->button8->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button3->Enabled = true;
+		this->button4->Enabled = true;
+		this->button7->Enabled = true;
+		this->button11->Enabled = true;
+		this->button12->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button9_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button9->Text);
+
+		this->button9->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button5->Enabled = true;
+		this->button6->Enabled = true;
+		this->button10->Enabled = true;
+		this->button13->Enabled = true;
+		this->button14->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button10_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button10->Text);
+
+		this->button10->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button5->Enabled = true;
+		this->button6->Enabled = true;
+		this->button7->Enabled = true;
+		this->button9->Enabled = true;
+		this->button11->Enabled = true;
+		this->button13->Enabled = true;
+		this->button14->Enabled = true;
+		this->button15->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button11_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button11->Text);
+
+		this->button11->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button6->Enabled = true;
+		this->button7->Enabled = true;
+		this->button8->Enabled = true;
+		this->button10->Enabled = true;
+		this->button12->Enabled = true;
+		this->button14->Enabled = true;
+		this->button15->Enabled = true;
+		this->button16->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button12_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button12->Text);
+
+		this->button12->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button7->Enabled = true;
+		this->button8->Enabled = true;
+		this->button11->Enabled = true;
+		this->button15->Enabled = true;
+		this->button16->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button13_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button13->Text);
+
+		this->button13->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button9->Enabled = true;
+		this->button10->Enabled = true;
+		this->button14->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button14_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button14->Text);
+
+		this->button14->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button9->Enabled = true;
+		this->button10->Enabled = true;
+		this->button11->Enabled = true;
+		this->button13->Enabled = true;
+		this->button15->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button15_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button15->Text);
+
+		this->button15->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button10->Enabled = true;
+		this->button11->Enabled = true;
+		this->button12->Enabled = true;
+		this->button14->Enabled = true;
+		this->button16->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+
+	void BoggleForm::button16_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
+
+		this->letters->Add(this->button16->Text);
+
+		this->button16->BackColor = BackColor.Aqua;
+
+		this->disableAllLetters();
+
+		this->button11->Enabled = true;
+		this->button12->Enabled = true;
+		this->button15->Enabled = true;
+
+		this->disableAllBlueLetters();
+	}
+		
 
 	
-	String^ BoggleForm::buildWord(){
-		
-		for (int i = 0; i < this->word->Length; i++){
-		this->validWord = this->word[i];
-		}
-		
-		return this->validWord;
-	}
-
-
-	void BoggleForm::resetButtonColor(){
-		for (int i = 0; i < this->buttonList->Count; i++){
-			this->buttonList[i]->ResetBackColor();
-		}
-	}
-
-
-	void BoggleForm::resetButtonStyle(){
-		for (int i = 0; i < this->buttonList->Count; i++){
-			this->buttonList[i]->FlatStyle = FlatStyle::System;
-		}
-	}
-
-
-	void BoggleForm::getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-
-		for (int i = 0; i < this->word->Length; i++){
-			Button^ btn = dynamic_cast<Button^>(sender);
-			this->clickedButtonList(btn);
-			this->validWord = btn->Text;
-
-			if (this->validWord == "Add"){
-				this->validWord = "\r\n";
-			}
-			else if (this->validWord == " "){
-				this->validWord = "\r";
-			}
-			this->word[i] += this->validWord->ToLower();
-		}
-	}
-
-
-	void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
-		
-		Button^ btn1 = dynamic_cast<Button^>(sender);
-
-		if (btn1->ContainsFocus){			
-			btn1->BackColor = ForeColor.Aqua;
-		}
-
-	}
-
 
 	void BoggleForm::spinButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
@@ -210,10 +497,55 @@ using namespace Team11Boggle;
 		this->button1->Text = die13;
 	}
 
-	void BoggleForm::viewScoresButton_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->scoreBoardPanel->BringToFront();
+	void BoggleForm::enableAllLetters(){
+
+		for each  (Button^ button in this->buttons)
+		{
+			button->Enabled = true;
+			button->BackColor = BackColor.LightGray;
+		}
 	}
 
+	void BoggleForm::disableAllLetters(){
+
+		for each  (Button^ button in this->buttons)
+		{
+			button->Enabled = false;
+		}
+	}
+
+	void BoggleForm::disableAllBlueLetters(){
+
+		for each  (Button^ button in this->buttons)
+		{
+			if (button->BackColor == BackColor.Aqua) {
+
+				button->Enabled = false;
+			}
+		}
+	}
+
+	String^ BoggleForm::buildWord(){
+
+		String^ word = gcnew String("");
+
+		for each (String^ letter in this->letters)
+		{
+			word += letter;
+		}
+
+		return word;
+	}
+
+	void BoggleForm::printWordsInTextBox(){
+
+		this->validWordBox->Text = "";
+
+		for each (String^ word in this->words)
+		{
+			this->validWordBox->Text += word + "\r\n";
+		}
+	}
 
 	void BoggleForm::quitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
