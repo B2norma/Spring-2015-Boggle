@@ -35,6 +35,9 @@ using namespace Team11Boggle;
 		this->startButton->Text = this->resourceManager->GetString(L"StartButtonText");
 		this->Text = this->resourceManager->GetString(L"FormTitle");
 		this->buildButtonList();
+		this->disableAllLetters();
+		this->submitButton->Enabled = false;
+		this->spinButton->Enabled = false;
 	}
 
 
@@ -54,6 +57,7 @@ using namespace Team11Boggle;
 		this->words->Add(this->buildWord());
 		this->printWordsInTextBox();
 		this->letters->Clear();
+		this->spinButton->Enabled = true;
 		this->enableAllLetters();
 	}
 
@@ -85,8 +89,12 @@ using namespace Team11Boggle;
 
 	void BoggleForm::setupGameBoard(){
 
+		this->words->Clear();
+		this->validWordBox->Text = "";
 		this->populateRandomLetters();
 		this->enableAllLetters();
+		this->spinButton->Enabled = true;
+		this->submitButton->Enabled = true;
 		this->resetTimer();
 	}
 		
@@ -142,6 +150,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button1->Text);
 		
 		this->button1->BackColor = BackColor.Aqua;
@@ -156,6 +166,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button2->Text);
 
@@ -174,6 +186,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button3->Text);
 
 		this->button3->BackColor = BackColor.Aqua;
@@ -191,6 +205,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button4_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button4->Text);
 
 		this->button4->BackColor = BackColor.Aqua;
@@ -205,6 +221,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::button5_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button5->Text);
 
@@ -222,6 +240,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::button6_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button6->Text);
 
@@ -243,6 +263,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button7_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button7->Text);
 
 		this->button7->BackColor = BackColor.Aqua;
@@ -263,6 +285,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button8_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button8->Text);
 
 		this->button8->BackColor = BackColor.Aqua;
@@ -280,6 +304,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button9_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button9->Text);
 
 		this->button9->BackColor = BackColor.Aqua;
@@ -296,6 +322,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::button10_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button10->Text);
 
@@ -317,6 +345,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button11_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button11->Text);
 
 		this->button11->BackColor = BackColor.Aqua;
@@ -337,6 +367,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button12_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button12->Text);
 
 		this->button12->BackColor = BackColor.Aqua;
@@ -354,6 +386,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button13_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button13->Text);
 
 		this->button13->BackColor = BackColor.Aqua;
@@ -368,6 +402,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::button14_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button14->Text);
 
@@ -386,6 +422,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::button15_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		this->spinButton->Enabled = false;
+
 		this->letters->Add(this->button15->Text);
 
 		this->button15->BackColor = BackColor.Aqua;
@@ -402,6 +440,8 @@ using namespace Team11Boggle;
 	}
 
 	void BoggleForm::button16_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button16->Text);
 
