@@ -8,17 +8,6 @@ using namespace std;
 using namespace System;
 using namespace Team11Boggle;
 
-	[STAThreadAttribute]
-	int main(array<System::String ^> ^args)
-	{
-		Application::EnableVisualStyles();
-		Application::SetCompatibleTextRenderingDefault(false);
-
-		Application::Run(gcnew BoggleForm());
-
-		return 0;
-	}
-
 	BoggleForm::BoggleForm(void)
 	{
 		this->validWord = "";
@@ -67,6 +56,7 @@ using namespace Team11Boggle;
 
 	}
 
+
 	void BoggleForm::reset_Timer(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e){
 		this->Timer->Enabled = false;
 		GameTimer->Text = "3:00";
@@ -81,6 +71,7 @@ using namespace Team11Boggle;
 		this->populateGameBoard();
 		
 	}
+
 
 	void BoggleForm::populateGameBoard(){
 
@@ -104,9 +95,11 @@ using namespace Team11Boggle;
 		this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
 	}
 
+
 	void BoggleForm::clickedButtonList(Button^ clickedButton){
 		this->buttonList->Add(clickedButton);
 	}
+
 
 	/// <summary>
 	/// Adds the word to validTextBox after being
@@ -135,17 +128,20 @@ using namespace Team11Boggle;
 		return this->validWord;
 	}
 
+
 	void BoggleForm::resetButtonColor(){
 		for (int i = 0; i < this->buttonList->Count; i++){
 			this->buttonList[i]->ResetBackColor();
 		}
 	}
 
+
 	void BoggleForm::resetButtonStyle(){
 		for (int i = 0; i < this->buttonList->Count; i++){
 			this->buttonList[i]->FlatStyle = FlatStyle::System;
 		}
 	}
+
 
 	void BoggleForm::getWord(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
@@ -164,6 +160,7 @@ using namespace Team11Boggle;
 		}
 	}
 
+
 	void BoggleForm::onClickLetter(System::Object^  sender, System::EventArgs^  e) {
 		
 		Button^ btn1 = dynamic_cast<Button^>(sender);
@@ -173,6 +170,7 @@ using namespace Team11Boggle;
 		}
 
 	}
+
 
 	void BoggleForm::spinButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
@@ -211,6 +209,11 @@ using namespace Team11Boggle;
 		this->button2->Text = die9;
 		this->button1->Text = die13;
 	}
+
+	void BoggleForm::viewScoresButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		this->scoreBoardPanel->BringToFront();
+	}
+
 
 	void BoggleForm::quitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
