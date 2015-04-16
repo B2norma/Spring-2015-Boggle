@@ -11,17 +11,14 @@ using namespace std;
 ref class WordValidator
 {
 private:
-	static const int tableSize = 172819;
-	Dictionary<String^, String^> ^dictionary;
+	static const int tableSize = 172819;	
+	List<String^> ^validatedWords;
+	void buildWordList();
 
 public:
 	WordValidator();
 	virtual ~WordValidator();	
-	Hashtable^ validWords;
-	bool findWord(String^ aWord);
-	int wordHash(String^ hashKey);
-	String^ validateWord(String^ word);	
-	List<String^> ^validatedWords;
-	void buildWordList();
+	bool validateWord(String^ word);	
+	
 };
 
