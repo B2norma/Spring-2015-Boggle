@@ -71,6 +71,7 @@ using namespace Team11Boggle;
 		if (this->minutes == 0 && this->seconds == 0){
 			GameTimer->Text = "0:00";
 			Timer->Stop();
+			this->displayScoreBoard();
 		}
 		else if (this->seconds == 0)
 		{
@@ -82,9 +83,9 @@ using namespace Team11Boggle;
 
 	void BoggleForm::resetTimer(){
 		this->Timer->Enabled = false;
-		GameTimer->Text = "3:00";
-		this->seconds = 60;
-		this->minutes = 2;
+		GameTimer->Text = "0:10";
+		this->seconds = 10;
+		this->minutes = 0;
 	}
 
 	void BoggleForm::setupGameBoard(){
@@ -545,6 +546,12 @@ using namespace Team11Boggle;
 		{
 			this->validWordBox->Text += word + "\r\n";
 		}
+	}
+
+	void BoggleForm::displayScoreBoard() {
+
+		ScoreBoard^ scoreBoard = gcnew ScoreBoard(this->words);
+		scoreBoard->Show();
 	}
 
 	void BoggleForm::quitButton_Click(System::Object^  sender, System::EventArgs^  e) {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DiceBag.h"
+#include "ScoreBoard.h"
 
 #include<vector>
 #include <cstdlib>
@@ -68,6 +69,8 @@ namespace Team11Boggle {
 	private: System::Void setupGameBoard();
 	private: String^ buildWord();
 	private: System::Void printWordsInTextBox();
+	private: System::Void displayScoreBoard();
+
 	
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
