@@ -22,17 +22,21 @@ namespace Team11Boggle {
 
 	private: 
 		List<String^> ^words;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  wordColumn;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  scoreColumn;
+	private: System::Windows::Forms::Label^  totalScoreLabel;
+	private: System::Windows::Forms::Label^  pointsLabel;
+			 int totalScore;
 
 		void setWordColumn();
-		void setScoreColumn();
 		int getWordScore(String^);
 
 	private: System::Windows::Forms::DataGridView^  scoreBoardGridView;
 
 
-	    System::Windows::Forms::DataGridViewTextBoxColumn^  wordColumn;
-	    System::Windows::Forms::DataGridViewTextBoxColumn^  scoreColumn;
-	    System::Windows::Forms::DataGridViewTextBoxColumn^  totalColumn;
+
+
+
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -48,20 +52,22 @@ namespace Team11Boggle {
 			this->scoreBoardGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->wordColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->scoreColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->totalColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->totalScoreLabel = (gcnew System::Windows::Forms::Label());
+			this->pointsLabel = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->scoreBoardGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// scoreBoardGridView
 			// 
 			this->scoreBoardGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->scoreBoardGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+			this->scoreBoardGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
 				this->wordColumn,
-					this->scoreColumn, this->totalColumn
+					this->scoreColumn
 			});
 			this->scoreBoardGridView->Location = System::Drawing::Point(12, 12);
 			this->scoreBoardGridView->Name = L"scoreBoardGridView";
-			this->scoreBoardGridView->Size = System::Drawing::Size(489, 283);
+			this->scoreBoardGridView->RowHeadersVisible = false;
+			this->scoreBoardGridView->Size = System::Drawing::Size(121, 283);
 			this->scoreBoardGridView->TabIndex = 0;
 			// 
 			// wordColumn
@@ -81,24 +87,40 @@ namespace Team11Boggle {
 			this->scoreColumn->ReadOnly = true;
 			this->scoreColumn->Width = 60;
 			// 
-			// totalColumn
+			// totalScoreLabel
 			// 
-			this->totalColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
-			this->totalColumn->HeaderText = L"Total Score";
-			this->totalColumn->Name = L"totalColumn";
-			this->totalColumn->ReadOnly = true;
-			this->totalColumn->Width = 87;
+			this->totalScoreLabel->AutoSize = true;
+			this->totalScoreLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->totalScoreLabel->Location = System::Drawing::Point(139, 12);
+			this->totalScoreLabel->Name = L"totalScoreLabel";
+			this->totalScoreLabel->Size = System::Drawing::Size(282, 55);
+			this->totalScoreLabel->TabIndex = 1;
+			this->totalScoreLabel->Text = L"Total Score:";
+			// 
+			// pointsLabel
+			// 
+			this->pointsLabel->AutoSize = true;
+			this->pointsLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->pointsLabel->Location = System::Drawing::Point(139, 67);
+			this->pointsLabel->Name = L"pointsLabel";
+			this->pointsLabel->Size = System::Drawing::Size(0, 55);
+			this->pointsLabel->TabIndex = 2;
 			// 
 			// ScoreBoard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(513, 307);
+			this->Controls->Add(this->pointsLabel);
+			this->Controls->Add(this->totalScoreLabel);
 			this->Controls->Add(this->scoreBoardGridView);
 			this->Name = L"ScoreBoard";
 			this->Text = L"ScoreBoard";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->scoreBoardGridView))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion

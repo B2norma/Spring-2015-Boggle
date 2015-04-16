@@ -6,9 +6,9 @@ ScoreBoard::ScoreBoard(List<String^>^ words)
 {
 	InitializeComponent();
 	this->words = words;
+	this->totalScore = 0;
 	this->scoreBoardGridView->RowCount = this->words->Count;
 	this->setWordColumn();
-	this->setScoreColumn();
 }
 
 ScoreBoard::~ScoreBoard()
@@ -44,6 +44,8 @@ int ScoreBoard::getWordScore(String^ word) {
 		score = 8;
 	}
 
+	this->totalScore += score;
+
 	return score;
 
 }
@@ -53,13 +55,10 @@ void ScoreBoard::setWordColumn() {
 	for (int i = 0; i < this->words->Count; i++)
 	{
 		this->scoreBoardGridView[0, i]->Value = this->words[i];
-	}
-}
-
-void ScoreBoard::setScoreColumn() {
-
-	for (int i = 0; i < this->words->Count; i++)
-	{
 		this->scoreBoardGridView[1, i]->Value = this->getWordScore(this->words[i]).ToString();
 	}
+
+	this->pointsLabel->Text = this->totalScore.ToString();
 }
+
+

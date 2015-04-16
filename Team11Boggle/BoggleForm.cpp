@@ -72,8 +72,8 @@ using namespace Team11Boggle;
 
 	void BoggleForm::resetTimer(){
 		this->Timer->Enabled = false;
-		GameTimer->Text = "0:10";
-		this->seconds = 10;
+		GameTimer->Text = "1:00";
+		this->seconds = 59;
 		this->minutes = 0;
 	}
 
