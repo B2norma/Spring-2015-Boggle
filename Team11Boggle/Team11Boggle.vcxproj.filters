@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="DiceBag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Die.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WinCLI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Die.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="DiceBag.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
     <ClCompile Include="WordValidator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="BoggleForm.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\view</Filter>
     </ClCompile>
     <ClCompile Include="ScoreBoard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +40,7 @@
     <EmbeddedResource Include="OutputStrings.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScoreBoard.resx" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -50,6 +51,12 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{976e30f6-49f6-4ebb-823f-f0fb3d5dae80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{5b7d9da5-2145-4f00-9aa2-7cffdf1be694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\view">
+      <UniqueIdentifier>{e87e5602-11dc-4089-93d7-d8c1146f33aa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

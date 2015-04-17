@@ -1,12 +1,8 @@
 #pragma once
 
 #include "DiceBag.h"
-using namespace model;
-
 #include "ScoreBoard.h"
-
 #include "WordValidator.h"
-
 #include<vector>
 #include <cstdlib>
 #include <ctime>
@@ -18,6 +14,7 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 using namespace System::Resources;
+using namespace model;
 
 namespace Team11Boggle {
 
@@ -88,8 +85,7 @@ namespace Team11Boggle {
 		void spinButton_Click(Object^  sender, EventArgs^  e);
 		void Timer_Tick(Object^  sender, EventArgs^  e);
 	    void quitButton_Click(Object^  sender, EventArgs^  e);
-		void onStartClick(Object^  sender, Windows::Forms::MouseEventArgs^  e);
-	
+		void onStartClick(Object^  sender, Windows::Forms::MouseEventArgs^  e);		
 	
 		String^ buildWord();
 		void populateRandomLetters();
@@ -102,7 +98,7 @@ namespace Team11Boggle {
 	    void setupGameBoard();
 	    void printWordsInTextBox();
 	    void buildValidWordList();
-	    void displayScoreBoard();
+	    void displayScoreBoard();		
 	        
 	public:
 		BoggleForm(void);	
@@ -389,7 +385,7 @@ namespace Team11Boggle {
 			this->GameTimer->AutoSize = true;
 			this->GameTimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->GameTimer->Location = System::Drawing::Point(349, 15);
+			this->GameTimer->Location = System::Drawing::Point(374, 15);
 			this->GameTimer->Name = L"GameTimer";
 			this->GameTimer->Size = System::Drawing::Size(71, 33);
 			this->GameTimer->TabIndex = 2;

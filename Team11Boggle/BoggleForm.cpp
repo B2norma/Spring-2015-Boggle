@@ -30,7 +30,7 @@ namespace Team11Boggle {
 
 		this->submitButton->Enabled = false;
 		this->spinButton->Enabled = false;
-		this->disableAllLetters();
+		this->disableAllLetters();				
 	}
 
 #pragma endregion
@@ -65,6 +65,8 @@ namespace Team11Boggle {
 			this->displayScoreBoard();
 			this->disableAllLetters();
 			this->colorAllLettersLightGray();
+			this->submitButton->Enabled = false;
+			this->spinButton->Enabled = false;
 		}
 		else if (this->seconds == 0)
 		{
@@ -444,7 +446,7 @@ namespace Team11Boggle {
 		this->button15->Enabled = true;
 
 		this->disableAllBlueLetters();
-	}
+	}	
 
 #pragma endregion
 
@@ -539,7 +541,7 @@ namespace Team11Boggle {
 
 		ScoreBoard^ scoreBoard = gcnew ScoreBoard(this->words);
 		scoreBoard->Show();
-	}
+	}	
 
 	void BoggleForm::buildButtonList(){
 
