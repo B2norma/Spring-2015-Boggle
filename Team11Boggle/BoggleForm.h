@@ -1,99 +1,108 @@
 #pragma once
 
 #include "DiceBag.h"
+using namespace model;
+
 #include "ScoreBoard.h"
+
+#include "WordValidator.h"
 
 #include<vector>
 #include <cstdlib>
 #include <ctime>
 
+using namespace System;
+using namespace System::ComponentModel;
+using namespace System::Collections;
+using namespace System::Windows::Forms;
+using namespace System::Data;
+using namespace System::Drawing;
+using namespace System::Resources;
+
 namespace Team11Boggle {
 
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
-	using namespace System::Resources;
-
-	public ref class BoggleForm : public System::Windows::Forms::Form
+	public ref class BoggleForm : public Form
 	{		
 
 	private:
-	List<Button^> ^buttons;
-	List<String^> ^letters;
-	List<String^> ^words;
-	static int seconds = 60;
-	static int minutes = 2;
-	String^ sec;
-	String^ min;
-	String^ validWord;
-		
-	private: System::Windows::Forms::TextBox^  validWordBox;
-	private: System::Windows::Forms::Button^  submitButton;
+		static int seconds = 60;
+		static int minutes = 2;
 
-	private: System::Windows::Forms::Button^  quitButton;
-	private: System::Windows::Forms::Button^  viewScoresButton;
-	private: System::Windows::Forms::Button^  spinButton;
+		List<Button^> ^buttons;
+		List<String^> ^letters;
+		List<String^> ^words;
 
-	private: ResourceManager^ resourceManager;
+		String^ sec;
+		String^ min;
+
+		TextBox^  validWordBox;
+
+	    Button^  button1;
+	    Button^  button2;
+	    Button^  button3;
+	    Button^  button4;
+	    Button^  button5;
+	    Button^  button6;
+	    Button^  button7;
+	    Button^  button8;
+	    Button^  button9;
+	    Button^  button10;
+	    Button^  button11;
+	    Button^  button12;
+	    Button^  button13;
+	    Button^  button14;
+	    Button^  button15;
+	    Button^  button16;
+	    Button^  startButton;
+		Button^  submitButton;
+		Button^  quitButton;
+		Button^  viewScoresButton;
+		Button^  spinButton;
+
+		ResourceManager^ resourceManager;
+
+		FlowLayoutPanel^  flowLayoutPanel1;
+
+	    IContainer^  components;
+
+		System::Windows::Forms::Timer^  Timer;
+		System::Windows::Forms::Label^  GameTimer;
+
+		void button1_Click(Object^  sender, EventArgs^  e);
+		void button2_Click(Object^  sender, EventArgs^  e);
+		void button3_Click(Object^  sender, EventArgs^  e);
+		void button4_Click(Object^  sender, EventArgs^  e);
+		void button5_Click(Object^  sender, EventArgs^  e);
+		void button6_Click(Object^  sender, EventArgs^  e);
+		void button7_Click(Object^  sender, EventArgs^  e);
+		void button8_Click(Object^  sender, EventArgs^  e);
+		void button9_Click(Object^  sender, EventArgs^  e);
+		void button10_Click(Object^  sender, EventArgs^  e);
+		void button11_Click(Object^  sender, EventArgs^  e);
+		void button12_Click(Object^  sender, EventArgs^  e);
+		void button13_Click(Object^  sender, EventArgs^  e);
+		void button14_Click(Object^  sender, EventArgs^  e);
+		void button15_Click(Object^  sender, EventArgs^  e);
+		void button16_Click(Object^  sender, EventArgs^  e);
+		void submitButton_Click(Object^  sender, EventArgs^  e);
+		void spinButton_Click(Object^  sender, EventArgs^  e);
+		void Timer_Tick(Object^  sender, EventArgs^  e);
+	    void quitButton_Click(Object^  sender, EventArgs^  e);
+		void onStartClick(Object^  sender, Windows::Forms::MouseEventArgs^  e);
 	
-	System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button2_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button3_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button4_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button5_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button6_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button7_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button8_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button9_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button10_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button11_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button12_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button13_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button14_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button15_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button16_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void submitButton_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void spinButton_Click(System::Object^  sender, System::EventArgs^  e);	
-	System::Void Timer_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-	System::Void populateRandomLetters();	
-	System::Void resetTimer();
-	private: System::Void quitButton_Click(System::Object^  sender, System::EventArgs^  e);
-	private: System::Void buildButtonList();
-	private: System::Void enableAllLetters();
-	private: System::Void disableAllLetters();
-	private: System::Void disableAllBlueLetters();
-	private: System::Void setupGameBoard();
-	private: String^ buildWord();
-	private: System::Void printWordsInTextBox();
-	private: System::Void buildValidWordList();
-	private: System::Void displayScoreBoard();
-
 	
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::Button^  button5;
-	private: System::Windows::Forms::Button^  button6;
-	private: System::Windows::Forms::Button^  button7;
-	private: System::Windows::Forms::Button^  button8;
-	private: System::Windows::Forms::Button^  button9;
-	private: System::Windows::Forms::Button^  button10;
-	private: System::Windows::Forms::Button^  button11;
-	private: System::Windows::Forms::Button^  button12;
-	private: System::Windows::Forms::Button^  button13;
-	private: System::Windows::Forms::Button^  button14;
-	private: System::Windows::Forms::Button^  button15;
-	private: System::Windows::Forms::Button^  button16;
-	private: System::Windows::Forms::Button^  startButton;
-	private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
-	private: System::Windows::Forms::Timer^  Timer;
-	private: System::Windows::Forms::Label^  GameTimer;
-	private: System::ComponentModel::IContainer^  components;
+		String^ buildWord();
+		void populateRandomLetters();
+		void resetTimer();
+	    void buildButtonList();
+	    void enableAllLetters();
+	    void disableAllLetters();
+	    void disableAllBlueLetters();
+		void colorAllLettersLightGray();
+	    void setupGameBoard();
+	    void printWordsInTextBox();
+	    void buildValidWordList();
+	    void displayScoreBoard();
 	        
 	public:
 		BoggleForm(void);	
@@ -380,7 +389,7 @@ namespace Team11Boggle {
 			this->GameTimer->AutoSize = true;
 			this->GameTimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->GameTimer->Location = System::Drawing::Point(403, 15);
+			this->GameTimer->Location = System::Drawing::Point(349, 15);
 			this->GameTimer->Name = L"GameTimer";
 			this->GameTimer->Size = System::Drawing::Size(71, 33);
 			this->GameTimer->TabIndex = 2;
@@ -389,9 +398,9 @@ namespace Team11Boggle {
 			// 
 			// startButton
 			// 
-			this->startButton->Location = System::Drawing::Point(258, 354);
+			this->startButton->Location = System::Drawing::Point(480, 51);
 			this->startButton->Name = L"startButton";
-			this->startButton->Size = System::Drawing::Size(76, 39);
+			this->startButton->Size = System::Drawing::Size(109, 39);
 			this->startButton->TabIndex = 3;
 			this->startButton->Text = L"Start";
 			this->startButton->UseVisualStyleBackColor = true;
@@ -404,16 +413,16 @@ namespace Team11Boggle {
 			this->validWordBox->Multiline = true;
 			this->validWordBox->Name = L"validWordBox";
 			this->validWordBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->validWordBox->Size = System::Drawing::Size(172, 282);
+			this->validWordBox->Size = System::Drawing::Size(119, 282);
 			this->validWordBox->TabIndex = 5;
 			// 
 			// submitButton
 			// 
 			this->submitButton->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->submitButton->ForeColor = System::Drawing::SystemColors::Control;
-			this->submitButton->Location = System::Drawing::Point(177, 353);
+			this->submitButton->Location = System::Drawing::Point(177, 342);
 			this->submitButton->Name = L"submitButton";
-			this->submitButton->Size = System::Drawing::Size(75, 39);
+			this->submitButton->Size = System::Drawing::Size(160, 63);
 			this->submitButton->TabIndex = 6;
 			this->submitButton->Text = L"Submit";
 			this->submitButton->UseVisualStyleBackColor = true;
@@ -421,9 +430,9 @@ namespace Team11Boggle {
 			// 
 			// spinButton
 			// 
-			this->spinButton->Location = System::Drawing::Point(96, 353);
+			this->spinButton->Location = System::Drawing::Point(12, 342);
 			this->spinButton->Name = L"spinButton";
-			this->spinButton->Size = System::Drawing::Size(75, 39);
+			this->spinButton->Size = System::Drawing::Size(159, 63);
 			this->spinButton->TabIndex = 7;
 			this->spinButton->Text = L"Spin";
 			this->spinButton->UseVisualStyleBackColor = true;
@@ -431,9 +440,9 @@ namespace Team11Boggle {
 			// 
 			// quitButton
 			// 
-			this->quitButton->Location = System::Drawing::Point(15, 354);
+			this->quitButton->Location = System::Drawing::Point(480, 367);
 			this->quitButton->Name = L"quitButton";
-			this->quitButton->Size = System::Drawing::Size(75, 38);
+			this->quitButton->Size = System::Drawing::Size(109, 38);
 			this->quitButton->TabIndex = 8;
 			this->quitButton->Text = L"Quit";
 			this->quitButton->UseVisualStyleBackColor = true;
@@ -441,9 +450,9 @@ namespace Team11Boggle {
 			// 
 			// viewScoresButton
 			// 
-			this->viewScoresButton->Location = System::Drawing::Point(398, 353);
+			this->viewScoresButton->Location = System::Drawing::Point(480, 96);
 			this->viewScoresButton->Name = L"viewScoresButton";
-			this->viewScoresButton->Size = System::Drawing::Size(76, 38);
+			this->viewScoresButton->Size = System::Drawing::Size(109, 38);
 			this->viewScoresButton->TabIndex = 9;
 			this->viewScoresButton->Text = L"View Scores";
 			this->viewScoresButton->UseVisualStyleBackColor = true;
@@ -453,7 +462,7 @@ namespace Team11Boggle {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Control;
-			this->ClientSize = System::Drawing::Size(539, 417);
+			this->ClientSize = System::Drawing::Size(594, 417);
 			this->Controls->Add(this->viewScoresButton);
 			this->Controls->Add(this->quitButton);
 			this->Controls->Add(this->spinButton);

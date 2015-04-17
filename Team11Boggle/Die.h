@@ -6,15 +6,18 @@ using namespace System::Collections::Generic;
 #include <cstdlib>
 using namespace std;
 
-ref class Die
-{
-private:
-	List<String^> ^letters;
+namespace model {
 
-public:
-	Die(String^, String^, String^, String^, String^, String^);
-	virtual ~Die();
+	ref class Die {
 
-	String^ getRandomLetter();
-};
+	private:
+		List<String^> ^letters;
+
+	public:
+		Die(String^, String^, String^, String^, String^, String^);
+		virtual ~Die();
+
+		String^ getRandomLetter();
+	};
+}
 

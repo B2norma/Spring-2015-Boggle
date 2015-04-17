@@ -1,34 +1,41 @@
 #include "BoggleForm.h"
-#include "WordValidator.h"
-#include<cmath>
-#include<iostream>
-#include <fstream>
 
-using namespace std;
-using namespace System;
-using namespace Team11Boggle;
+namespace Team11Boggle {
 
+#pragma region Constructors
+
+	/// <summary>
+	/// A Constructor for BoggleForm that initializes the correct items for game functionality.
+	/// </summary>
 	BoggleForm::BoggleForm(void)
 	{
-		this->validWord = "";
-		this->buttons = gcnew List<Button^>(16);
-		this->letters = gcnew List<String^>();
-		this->words = gcnew List<String^>();		
-		srand(time(0));
+
 		InitializeComponent();
+
+		srand(time(0));
+
 		this->resourceManager = gcnew Resources::ResourceManager(L"Team11Boggle.OutputStrings", this->GetType()->Assembly);
+		this->viewScoresButton->Text = this->resourceManager->GetString(L"ViewScoreButtonText");
+		this->startButton->Text = this->resourceManager->GetString(L"StartButtonText");
 		this->submitButton->Text = this->resourceManager->GetString(L"AddButtonText");
 		this->spinButton->Text = this->resourceManager->GetString(L"SpinButtonText");
 		this->quitButton->Text = this->resourceManager->GetString(L"QuitButtonText");
-		this->viewScoresButton->Text = this->resourceManager->GetString(L"ViewScoreButtonText");
-		this->startButton->Text = this->resourceManager->GetString(L"StartButtonText");
 		this->Text = this->resourceManager->GetString(L"FormTitle");
+
+		this->buttons = gcnew List<Button^>(16);
+		this->letters = gcnew List<String^>();
+		this->words = gcnew List<String^>();
+
 		this->buildButtonList();
-		this->disableAllLetters();
+
 		this->submitButton->Enabled = false;
 		this->spinButton->Enabled = false;
+		this->disableAllLetters();
 	}
 
+#pragma endregion
+
+#pragma region Destructors
 
 	/// <summary>
 	/// Clean up any resources being used.
@@ -41,14 +48,9 @@ using namespace Team11Boggle;
 		}
 	}
 
-	void BoggleForm::submitButton_Click(System::Object^  sender, System::EventArgs^  e) {
-				
-		this->buildValidWordList();
-		this->printWordsInTextBox();
-		this->letters->Clear();
-		this->spinButton->Enabled = true;
-		this->enableAllLetters();
-	}
+#pragma endregion
+
+#pragma region Handlers
 
 	void BoggleForm::Timer_Tick(System::Object^  sender, System::EventArgs^  e) {
 
@@ -61,81 +63,79 @@ using namespace Team11Boggle;
 			GameTimer->Text = "0:00";
 			Timer->Stop();
 			this->displayScoreBoard();
+			this->disableAllLetters();
+			this->colorAllLettersLightGray();
 		}
 		else if (this->seconds == 0)
 		{
 			this->seconds = 59;
 			this->minutes--;
 		}
-
 	}
-
-	void BoggleForm::resetTimer(){
-		this->Timer->Enabled = false;
-		GameTimer->Text = "1:00";
-		this->seconds = 59;
-		this->minutes = 0;
-	}
-
-	void BoggleForm::setupGameBoard(){
-
-		this->words->Clear();
-		this->validWordBox->Text = "";
-		this->populateRandomLetters();
-		this->enableAllLetters();
-		this->spinButton->Enabled = true;
-		this->submitButton->Enabled = true;
-		this->resetTimer();
-	}
-		
 
 	void BoggleForm::onStartClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
 		this->setupGameBoard();
+
 		this->Timer->Start();
-		
 	}
 
-	void BoggleForm::buildButtonList(){
+	void BoggleForm::submitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		this->buttons->Add(this->button1);
-		this->buttons->Add(this->button2);
-		this->buttons->Add(this->button3);
-		this->buttons->Add(this->button4);
-		this->buttons->Add(this->button5);
-		this->buttons->Add(this->button6);
-		this->buttons->Add(this->button7);
-		this->buttons->Add(this->button8);
-		this->buttons->Add(this->button9);
-		this->buttons->Add(this->button10);
-		this->buttons->Add(this->button11);
-		this->buttons->Add(this->button12);
-		this->buttons->Add(this->button13);
-		this->buttons->Add(this->button14);
-		this->buttons->Add(this->button15);
-		this->buttons->Add(this->button16);
+		this->buildValidWordList();
 
+		this->printWordsInTextBox();
+
+		this->letters->Clear();
+
+		this->spinButton->Enabled = true;
+
+		this->colorAllLettersLightGray();
+
+		this->enableAllLetters();
 	}
 
-	void BoggleForm::populateRandomLetters(){
+	void BoggleForm::spinButton_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		DiceBag^ diceBag = gcnew DiceBag();
+		String^ die1 = this->button1->Text;
+		String^ die2 = this->button2->Text;
+		String^ die3 = this->button3->Text;
+		String^ die4 = this->button4->Text;
+		String^ die5 = this->button5->Text;
+		String^ die6 = this->button6->Text;
+		String^ die7 = this->button7->Text;
+		String^ die8 = this->button8->Text;
+		String^ die9 = this->button9->Text;
+		String^ die10 = this->button10->Text;
+		String^ die11 = this->button11->Text;
+		String^ die12 = this->button12->Text;
+		String^ die13 = this->button13->Text;
+		String^ die14 = this->button14->Text;
+		String^ die15 = this->button15->Text;
+		String^ die16 = this->button16->Text;
 
-		this->button1->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button2->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button3->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button4->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button5->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button6->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button7->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button8->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button9->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button10->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button11->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button12->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button13->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button14->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button15->Text = diceBag->getRandomDie()->getRandomLetter();
-		this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
+
+		this->button16->Text = die4;
+		this->button15->Text = die8;
+		this->button14->Text = die12;
+		this->button13->Text = die16;
+		this->button12->Text = die3;
+		this->button11->Text = die7;
+		this->button10->Text = die11;
+		this->button9->Text = die15;
+		this->button8->Text = die2;
+		this->button7->Text = die6;
+		this->button6->Text = die10;
+		this->button5->Text = die14;
+		this->button4->Text = die1;
+		this->button3->Text = die5;
+		this->button2->Text = die9;
+		this->button1->Text = die13;
+	}
+
+	void BoggleForm::quitButton_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		this->Close();
 	}
 
 	void BoggleForm::button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -143,7 +143,7 @@ using namespace Team11Boggle;
 		this->spinButton->Enabled = false;
 
 		this->letters->Add(this->button1->Text);
-		
+
 		this->button1->BackColor = BackColor.Aqua;
 
 		this->disableAllLetters();
@@ -445,46 +445,49 @@ using namespace Team11Boggle;
 
 		this->disableAllBlueLetters();
 	}
-		
 
-	
+#pragma endregion
 
-	void BoggleForm::spinButton_Click(System::Object^  sender, System::EventArgs^  e) {
+#pragma region Helper Functions
 
-		String^ die1 = this->button1->Text;
-		String^ die2 = this->button2->Text;
-		String^ die3 = this->button3->Text;
-		String^ die4 = this->button4->Text;
-		String^ die5 = this->button5->Text;
-		String^ die6 = this->button6->Text;
-		String^ die7 = this->button7->Text;
-		String^ die8 = this->button8->Text;
-		String^ die9 = this->button9->Text;
-		String^ die10 = this->button10->Text;
-		String^ die11 = this->button11->Text;
-		String^ die12 = this->button12->Text;
-		String^ die13 = this->button13->Text;
-		String^ die14 = this->button14->Text;
-		String^ die15 = this->button15->Text;
-		String^ die16 = this->button16->Text;
+	String^ BoggleForm::buildWord(){
+		WordValidator wordValidator;
+		String^ word = gcnew String("");
 
+		for each (String^ letter in this->letters)
+		{
+			word += letter;
+		}
+		return word;
+	}
 
-		this->button16->Text = die4;
-		this->button15->Text = die8;
-		this->button14->Text = die12;
-		this->button13->Text = die16;
-		this->button12->Text = die3;
-		this->button11->Text = die7;
-		this->button10->Text = die11;
-		this->button9->Text = die15;
-		this->button8->Text = die2;
-		this->button7->Text = die6;
-		this->button6->Text = die10;
-		this->button5->Text = die14;
-		this->button4->Text = die1;
-		this->button3->Text = die5;
-		this->button2->Text = die9;
-		this->button1->Text = die13;
+	void BoggleForm::buildValidWordList(){
+		WordValidator wordValidator;
+		String^ wordToValidate = this->buildWord();
+
+		if (wordValidator.validateWord(wordToValidate) == true
+			&& this->words->Contains(wordToValidate) == false &&
+			wordToValidate->Length > 2){
+			this->words->Add(wordToValidate);
+		}
+	}
+
+	void BoggleForm::setupGameBoard(){
+
+		this->words->Clear();
+		this->validWordBox->Text = "";
+		this->populateRandomLetters();
+		this->enableAllLetters();
+		this->spinButton->Enabled = true;
+		this->submitButton->Enabled = true;
+		this->resetTimer();
+	}
+
+	void BoggleForm::resetTimer(){
+		this->Timer->Enabled = false;
+		GameTimer->Text = "1:00";
+		this->seconds = 59;
+		this->minutes = 0;
 	}
 
 	void BoggleForm::enableAllLetters(){
@@ -492,7 +495,6 @@ using namespace Team11Boggle;
 		for each  (Button^ button in this->buttons)
 		{
 			button->Enabled = true;
-			button->BackColor = BackColor.LightGray;
 		}
 	}
 
@@ -515,28 +517,13 @@ using namespace Team11Boggle;
 		}
 	}
 
-	String^ BoggleForm::buildWord(){
-		WordValidator wordValidator;
-		String^ word = gcnew String("");
+	void BoggleForm::colorAllLettersLightGray(){
 
-		for each (String^ letter in this->letters)
+		for each  (Button^ button in this->buttons)
 		{
-			word += letter;
+			button->BackColor = BackColor.LightGray;
 		}
-		return word;		
 	}
-
-	void BoggleForm::buildValidWordList(){
-		WordValidator wordValidator;
-		String^ wordToValidate = this->buildWord();
-
-		if (wordValidator.validateWord(wordToValidate) == true
-			&& this->words->Contains(wordToValidate) == false &&
-			wordToValidate->Length > 2){
-			this->words->Add(wordToValidate);
-		}		
-	}
-
 
 	void BoggleForm::printWordsInTextBox(){
 
@@ -554,9 +541,49 @@ using namespace Team11Boggle;
 		scoreBoard->Show();
 	}
 
-	void BoggleForm::quitButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	void BoggleForm::buildButtonList(){
 
-		this->Close();
+		this->buttons->Add(this->button1);
+		this->buttons->Add(this->button2);
+		this->buttons->Add(this->button3);
+		this->buttons->Add(this->button4);
+		this->buttons->Add(this->button5);
+		this->buttons->Add(this->button6);
+		this->buttons->Add(this->button7);
+		this->buttons->Add(this->button8);
+		this->buttons->Add(this->button9);
+		this->buttons->Add(this->button10);
+		this->buttons->Add(this->button11);
+		this->buttons->Add(this->button12);
+		this->buttons->Add(this->button13);
+		this->buttons->Add(this->button14);
+		this->buttons->Add(this->button15);
+		this->buttons->Add(this->button16);
+
 	}
-		
-	
+
+	void BoggleForm::populateRandomLetters(){
+
+		DiceBag^ diceBag = gcnew DiceBag();
+
+		this->button1->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button2->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button3->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button4->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button5->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button6->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button7->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button8->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button9->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button10->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button11->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button12->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button13->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button14->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button15->Text = diceBag->getRandomDie()->getRandomLetter();
+		this->button16->Text = diceBag->getRandomDie()->getRandomLetter();
+	}
+
+#pragma endregion
+
+}

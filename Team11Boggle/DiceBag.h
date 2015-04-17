@@ -2,6 +2,8 @@
 
 #include "Die.h"
 
+namespace model {
+
 ref class DiceBag
 {
 private:
@@ -16,4 +18,6 @@ public:
 
 	 Die^ getRandomDie();
 };
+
+}
 

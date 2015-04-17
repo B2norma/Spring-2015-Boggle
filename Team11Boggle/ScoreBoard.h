@@ -15,32 +15,27 @@ namespace Team11Boggle {
 	/// </summary>
 	public ref class ScoreBoard : public System::Windows::Forms::Form
 	{
+	private:
+		int totalScore;
+
+		List<String^> ^words;
+
+		DataGridView^  scoreBoardGridView;
+
+		DataGridViewTextBoxColumn^  wordColumn;
+		DataGridViewTextBoxColumn^  scoreColumn;
+
+		System::Windows::Forms::Label^  totalScoreLabel;
+		System::Windows::Forms::Label^  pointsLabel;
+
+		System::ComponentModel::Container ^components;
+
+		void setWordsAndScores();
+		int getWordScore(String^);
+
 	public:
 		ScoreBoard(List<String^>^);
 		~ScoreBoard();
-		
-
-	private: 
-		List<String^> ^words;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  wordColumn;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  scoreColumn;
-	private: System::Windows::Forms::Label^  totalScoreLabel;
-	private: System::Windows::Forms::Label^  pointsLabel;
-			 int totalScore;
-
-		void setWordColumn();
-		int getWordScore(String^);
-
-	private: System::Windows::Forms::DataGridView^  scoreBoardGridView;
-
-
-
-
-
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>

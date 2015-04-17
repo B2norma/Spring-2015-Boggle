@@ -1,61 +1,71 @@
 #include "WordValidator.h"
-#include<string>
-#include<iostream>
-#include <fstream>
 
-using namespace std;
+namespace model {
 
-/**
-* Initializes default WordValidator object.
-*
-* @precondition none
-* 
-*/
-WordValidator::WordValidator()
-{
-	
-	this->validatedWords = gcnew List<String^>(this->tableSize);	
-}
+#pragma region Constructors
 
-/**
-* Destructor called when the lifetime of a WordValidator object ends.
-*/
-WordValidator::~WordValidator()
-{
-	
-}
-
-
-/// <summary>
-/// Validates the word by checking it against a dictionary.
-/// </summary>
-/// <param name="word">The word to check.</param>
-/// <returns>bool - true for valid words false for invalid words</returns>
-bool WordValidator::validateWord(String^ word){
-	this->buildWordList();
-	
-	if (this->validatedWords->Contains(word->ToLower())){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
-void WordValidator::buildWordList(){
-	
-	string line;
-	ifstream dictionaryFile("dictionary.txt");
-	if (dictionaryFile.is_open())
+	/**
+	* Initializes default WordValidator object.
+	*
+	* @precondition none
+	*
+	*/
+	WordValidator::WordValidator()
 	{
-		while (getline(dictionaryFile, line))
+
+		this->validatedWords = gcnew List<String^>(this->tableSize);
+	}
+
+#pragma endregion
+
+#pragma region Destructors
+
+	/**
+	* Destructor called when the lifetime of a WordValidator object ends.
+	*/
+	WordValidator::~WordValidator()
+	{
+
+	}
+
+#pragma endregion
+
+#pragma region Functions
+
+	/// <summary>
+	/// Validates the word by checking it against a dictionary.
+	/// </summary>
+	/// <param name="word">The word to check.</param>
+	/// <returns>bool - true for valid words false for invalid words</returns>
+	bool WordValidator::validateWord(String^ word){
+		this->buildWordList();
+
+		if (this->validatedWords->Contains(word->ToLower())){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	void WordValidator::buildWordList(){
+
+		string line;
+		ifstream dictionaryFile("dictionary.txt");
+		if (dictionaryFile.is_open())
 		{
-			String^ aLine = gcnew String(line.c_str());
-			this->validatedWords->Add(aLine);
-		}		
-		
-		dictionaryFile.close();
-	}			
-	
+			while (getline(dictionaryFile, line))
+			{
+				String^ aLine = gcnew String(line.c_str());
+				this->validatedWords->Add(aLine);
+			}
+
+			dictionaryFile.close();
+		}
+
+	}
+
+#pragma endregion
+
 }
 
