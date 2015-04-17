@@ -20,6 +20,12 @@ namespace Team11Boggle {
 		this->scoreBoardGridView->RowCount = this->words->Count;
 
 		this->setWordsAndScores();
+		
+		this->resourceManager = gcnew Resources::ResourceManager(L"Team11Boggle.OutputStrings", this->GetType()->Assembly);
+		this->totalScoreLabel->Text = this->resourceManager->GetString(L"ScoreLabelText");		
+		this->scoreColumn->HeaderText = this->resourceManager->GetString(L"ScoreColumnText");
+		this->wordColumn->HeaderText = this->resourceManager->GetString(L"WordColumnText");
+		this->Text = this->resourceManager->GetString(L"ScoreBoardTitle");
 	}
 
 #pragma endregion

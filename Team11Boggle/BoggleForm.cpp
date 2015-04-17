@@ -12,7 +12,7 @@ namespace Team11Boggle {
 
 		InitializeComponent();
 
-		srand(time(0));
+		srand((unsigned)time(0));
 
 		this->resourceManager = gcnew Resources::ResourceManager(L"Team11Boggle.OutputStrings", this->GetType()->Assembly);
 		this->viewScoresButton->Text = this->resourceManager->GetString(L"ViewScoreButtonText");

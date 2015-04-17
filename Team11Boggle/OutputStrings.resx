@@ -126,6 +126,15 @@
   <data name="QuitButtonText" xml:space="preserve">
     <value>Quit</value>
   </data>
+  <data name="ScoreBoardTitle" xml:space="preserve">
+    <value>ScoreBoard</value>
+  </data>
+  <data name="ScoreColumnText" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="ScoreLabelText" xml:space="preserve">
+    <value>Total Score:</value>
+  </data>
   <data name="SpinButtonText" xml:space="preserve">
     <value>Rotate</value>
   </data>
@@ -133,6 +142,9 @@
     <value>Start New Game</value>
   </data>
   <data name="ViewScoreButtonText" xml:space="preserve">
-    <value>View Score</value>
+    <value>View High Scores</value>
+  </data>
+  <data name="WordColumnText" xml:space="preserve">
+    <value>Word</value>
   </data>
 </root>

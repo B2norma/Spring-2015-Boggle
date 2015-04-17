@@ -9,6 +9,7 @@ namespace Team11Boggle {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Resources;
 
 	/// <summary>
 	/// Summary for ScoreBoard
@@ -16,17 +17,18 @@ namespace Team11Boggle {
 	public ref class ScoreBoard : public System::Windows::Forms::Form
 	{
 	private:
+		ResourceManager^ resourceManager;
+
 		int totalScore;
 
 		List<String^> ^words;
 
 		DataGridView^  scoreBoardGridView;
 
-		DataGridViewTextBoxColumn^  wordColumn;
-		DataGridViewTextBoxColumn^  scoreColumn;
-
 		System::Windows::Forms::Label^  totalScoreLabel;
 		System::Windows::Forms::Label^  pointsLabel;
+		System::Windows::Forms::DataGridViewTextBoxColumn^  wordColumn;
+		System::Windows::Forms::DataGridViewTextBoxColumn^  scoreColumn;
 
 		System::ComponentModel::Container ^components;
 
@@ -45,10 +47,10 @@ namespace Team11Boggle {
 		void InitializeComponent(void)
 		{
 			this->scoreBoardGridView = (gcnew System::Windows::Forms::DataGridView());
-			this->wordColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->scoreColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->totalScoreLabel = (gcnew System::Windows::Forms::Label());
 			this->pointsLabel = (gcnew System::Windows::Forms::Label());
+			this->wordColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->scoreColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->scoreBoardGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -60,28 +62,12 @@ namespace Team11Boggle {
 				this->wordColumn,
 					this->scoreColumn
 			});
+			this->scoreBoardGridView->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
 			this->scoreBoardGridView->Location = System::Drawing::Point(12, 12);
 			this->scoreBoardGridView->Name = L"scoreBoardGridView";
 			this->scoreBoardGridView->RowHeadersVisible = false;
 			this->scoreBoardGridView->Size = System::Drawing::Size(121, 283);
 			this->scoreBoardGridView->TabIndex = 0;
-			// 
-			// wordColumn
-			// 
-			this->wordColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
-			this->wordColumn->HeaderText = L"Word";
-			this->wordColumn->Name = L"wordColumn";
-			this->wordColumn->ReadOnly = true;
-			this->wordColumn->Resizable = System::Windows::Forms::DataGridViewTriState::True;
-			this->wordColumn->Width = 58;
-			// 
-			// scoreColumn
-			// 
-			this->scoreColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
-			this->scoreColumn->HeaderText = L"Score";
-			this->scoreColumn->Name = L"scoreColumn";
-			this->scoreColumn->ReadOnly = true;
-			this->scoreColumn->Width = 60;
 			// 
 			// totalScoreLabel
 			// 
@@ -103,6 +89,21 @@ namespace Team11Boggle {
 			this->pointsLabel->Name = L"pointsLabel";
 			this->pointsLabel->Size = System::Drawing::Size(0, 55);
 			this->pointsLabel->TabIndex = 2;
+			// 
+			// wordColumn
+			// 
+			this->wordColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+			this->wordColumn->HeaderText = L"Word";
+			this->wordColumn->Name = L"wordColumn";
+			this->wordColumn->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->wordColumn->Width = 58;
+			// 
+			// scoreColumn
+			// 
+			this->scoreColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+			this->scoreColumn->HeaderText = L"Score";
+			this->scoreColumn->Name = L"scoreColumn";
+			this->scoreColumn->Width = 60;
 			// 
 			// ScoreBoard
 			// 
