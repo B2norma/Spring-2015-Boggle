@@ -54,6 +54,7 @@ namespace Team11Boggle {
 			// 
 			// scoreBoardGridView
 			// 
+			this->scoreBoardGridView->AllowUserToAddRows = false;
 			this->scoreBoardGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->scoreBoardGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
 				this->wordColumn,

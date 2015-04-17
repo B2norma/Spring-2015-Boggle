@@ -130,7 +130,7 @@
     <value>Rotate</value>
   </data>
   <data name="StartButtonText" xml:space="preserve">
-    <value>Start</value>
+    <value>Start New Game</value>
   </data>
   <data name="ViewScoreButtonText" xml:space="preserve">
     <value>View Score</value>
